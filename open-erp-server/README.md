@@ -93,7 +93,7 @@ var upload = multer({ storage: storage })
 ```
 
 ### `express-jwt` JWT认证
-> [express-jwt文档]()
+> [express-jwt文档](https://www.npmjs.com/package/express-jwt)
 
 安装
 ``` shell
@@ -129,4 +129,12 @@ const router = express.Router()
 
 // 对所有路由进行 jwt 认证
 router.use(jwtAuth)
+```
+
+### `mysql` mysql 链接
+> [mysql文档](https://www.npmjs.com/package/mysql)
+
+安装
+``` shell
+$ yarn add mysql
 ```

@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
   const query = Object.assign(defindParams, req.body)
   SysDep.get(query, function(err, rows, fields){
     if (err) {
-      Boom.badRequest(new Error(err))
+      Boom.badRequest(new Error(err.stack))
     }
     res.json({
       data: rows
