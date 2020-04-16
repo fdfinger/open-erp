@@ -4,12 +4,12 @@
 
 windows
 ``` shell
-$ SET DEBUG=open-erp-server:* & npm dev
+$ set DEBUG=open-erp-server:* & npm run dev
 ```
 
 linux or macos
 ``` shell
-$ DEBUG=open-erp-server:* & npm dev
+$ DEBUG=open-erp-server:* & npm run dev
 ```
 
 ## 部署步骤

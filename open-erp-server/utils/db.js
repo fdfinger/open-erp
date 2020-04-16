@@ -20,7 +20,6 @@ module.exports = function (sql, options = [], callback) {
     } else {
       conn.query(sql, options, function(err, rows, fields) {
         // 释放连接
-        console.log(sql, options)
         conn.release();
         callback(err, rows, fields);
       })

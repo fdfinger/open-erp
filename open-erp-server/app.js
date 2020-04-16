@@ -28,6 +28,7 @@ app.use('/department', depRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  // res.json({ statusCode: 404})
   next(createError(404));
 });
 
