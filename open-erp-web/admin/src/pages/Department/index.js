@@ -1,46 +1,34 @@
 import React, { Component } from "react";
-import { Card, Table } from "antd";
-import { getList } from "../../api/department";
+import { Card, Layout, Row, Col } from "antd";
+import DepartmentTree from './DepartmentTree'
+import DepartmentForm from './DepartmentForm'
 
 export default class Department extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super(props)
     this.state = {
-      dataSource: [],
-      columns: [
-        {
-          title: "序号",
-          dataIndex: "index",
-          render: (text, record, index) => <span>{index + 1}</span>,
-        },
-        { title: "部门名称", dataIndex: "name" },
-        { title: "排序", dataIndex: "seq" },
-        { title: "备注", dataIndex: "remark" },
-        { title: "修改人", dataIndex: "operator" },
-      ],
-    };
+      selectedId: ''
+    }
   }
-  getDepartment() {
-    getList().then((res) => {
-      this.setState({
-        dataSource: res.data,
-      });
-    });
-  }
-  componentDidMount() {
-    this.getDepartment();
+  treeOnSelect (selectedKeys) {
+    if (selectedKeys.length > 0) {
+      this.setState({selectedId: selectedKeys[0]})
+    }
   }
   render() {
     return (
-      <Card title={"部门信息"}>
-        <Table
-          bordered
-          size="small"
-          dataSource={this.state.dataSource}
-          columns={this.state.columns}
-          rowKey={(record) => record.id}
-        />
-      </Card>
+      <Layout>
+        <Card bodyStyle={{ padding: 0, minHeight: '50vh' }}>
+          <Row>
+            <Col span={6}>
+              <DepartmentTree onSelect={this.treeOnSelect.bind(this)}/>
+            </Col>
+            <Col span={18}>
+              <DepartmentForm />
+            </Col>
+          </Row>
+        </Card>
+      </Layout>
     );
   }
 }

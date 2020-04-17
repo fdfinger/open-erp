@@ -1,3 +1,3 @@
 import axios from './HttpRequest';
 
-export const getList = () => axios.get('user/')
+export const getList = () => axios.get('users/')
