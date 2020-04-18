@@ -6,7 +6,6 @@ let initState = {
 }
 
 const reducers = function (state = initState, action) {
-  console.log(state, action)
   switch (action.type) {
     case ADD:
       return Object.assign({}, state, { number: state.number + action.number })
