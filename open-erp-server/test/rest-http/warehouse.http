@@ -1,0 +1,25 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = warehouse
+
+### /
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### /?warehouse_name='建国'
+
+GET  http://{{host}}/{{module}}/?warehouse_name='建国' HTTP/1.1
+content-type: {{contentType}}
+
+### /:id
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### /:id error
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}

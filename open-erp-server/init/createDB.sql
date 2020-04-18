@@ -1,8 +1,5 @@
--- 创建所有表的SQL语句
-
 CREATE DATABASE `openerp`;
 
--- 部门表
 CREATE TABLE `sys_dept` (
 	`id` INT NOT NULL auto_increment COMMENT '部门id',
 	`name` VARCHAR ( 20 ) NOT NULL DEFAULT '' COMMENT '部门名称',
@@ -16,7 +13,6 @@ CREATE TABLE `sys_dept` (
 	PRIMARY KEY ( `id` ) 
 ) COMMENT '部门表';
 
--- 用户表
 CREATE TABLE `sys_user` (
 	`id` INT ( 32 ) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
 	`username` VARCHAR ( 64 ) NOT NULL DEFAULT '' COMMENT '用户名字',
@@ -36,8 +32,30 @@ PRIMARY KEY ( `id` )
 ) ENGINE = INNODB DEFAULT CHARSET = utf8mb4;
 
 
--- 初始数据
--- 部门表
 INSERT INTO sys_dept ( NAME, parent_id, LEVEL, seq, remark, operator )
 VALUES
 	( 'xxx总公司', 0, 1, 1, '', '无' );
+
+CREATE TABLE `sys_area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '地区ID',
+  `area_code` varchar(36) NOT NULL DEFAULT '' COMMENT '地区编码',
+  `parent_area_code` varchar(36) NOT NULL DEFAULT '' COMMENT '上级地区编码',
+  `area_name` varchar(255) NOT NULL DEFAULT '' COMMENT '地区名称',
+  `area_status` int(1) NOT NULL DEFAULT '0' COMMENT '启用状态(0禁用1启用)',
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `modify_date` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='地区';
+
+CREATE TABLE `warehouse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '仓库ID',
+  `warehouse_code` varchar(50) NOT NULL DEFAULT '' COMMENT '仓库编码',
+  `sys_dept_id` int(10) unsigned zerofill DEFAULT NULL COMMENT '所属部门Id',
+  `sys_dept_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '所属部门名称',
+  `warehouse_status` int(1) unsigned zerofill DEFAULT NULL COMMENT '仓库启用状态',
+  `warehouse_name` varchar(255) DEFAULT '' COMMENT '仓库名称',
+  `warehouse_remark` varchar(255) DEFAULT '' COMMENT '仓库备注',
+  `create_data` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `modify_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='仓库';

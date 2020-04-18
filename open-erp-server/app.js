@@ -8,6 +8,8 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var depRouter = require('./routes/department')
+var areaRouter = require('./routes/area')
+var warehouseRouter = require('./routes/warehouse')
 
 var app = express();
 
@@ -25,11 +27,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/department', depRouter);
+app.use('/area', areaRouter);
+app.use('/warehouse', warehouseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  // res.json({ statusCode: 404})
-  next(createError(404));
+  res.status(400).json({
+    statusCode: 404,
+    message: '请求参数错误'
+  })
+  // next(createError(404));
 });
 
 // error handler

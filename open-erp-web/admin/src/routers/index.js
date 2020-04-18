@@ -30,5 +30,17 @@ export const routers = [
     title: '用户信息',
     isShow: true,
     component: React.lazy(() => import("../pages/Users"))
-  }
+  },
+  {
+    path: '/admin/area',
+    title: '地区管理',
+    isShow: true,
+    component: React.lazy(() => import("../pages/Area"))
+  },
+  {
+    path: '/admin/warehouse',
+    title: '仓库管理',
+    isShow: true,
+    component: React.lazy(() => import("../pages/Warehouse"))
+  },
 ];
