@@ -4,6 +4,7 @@ import WarehouseTable from "./WarehouseTable";
 import Api from "../../api";
 import { Card, Button } from "antd";
 import WarehouseForm from "./WarehouseForm";
+import DepartmentSelect from "../../components/DepartmentSelect";
 
 const initFormValues = {
   area_code: "",
@@ -32,13 +33,13 @@ export default class Warehouse extends Component {
     });
   }
 
-  addArea = (params) => {
+  addWarehouse = (params) => {
     Api.warehouse.insert(params).finally(() => this.getList());
   };
 
   openAddFormModal() {
     this.setState({
-      title: "新增",
+      title: "添加仓库",
       hasEdit: true,
       editInitValues: initFormValues,
     });
@@ -60,7 +61,8 @@ export default class Warehouse extends Component {
 
   EditFormFinish(r) {
     this.closeFormModel();
-    this.addArea(r);
+    console.log(r)
+    // this.addWarehouse(r);
   }
 
   componentDidMount() {
@@ -98,6 +100,7 @@ export default class Warehouse extends Component {
             </Button>
           }
         >
+          <DepartmentSelect></DepartmentSelect>
           <WarehouseTable
             dataSource={this.state.dataSource}
             editClick={this.openEditFormModal.bind(this)}
