@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var depRouter = require('./routes/department')
 var areaRouter = require('./routes/area')
 var warehouseRouter = require('./routes/warehouse')
+var loginRouter = require('./routes/login')
 
 var app = express();
 
@@ -29,10 +30,11 @@ app.use('/users', usersRouter);
 app.use('/department', depRouter);
 app.use('/area', areaRouter);
 app.use('/warehouse', warehouseRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.status(400).json({
+  res.status(404).json({
     statusCode: 404,
     message: '请求参数错误'
   })

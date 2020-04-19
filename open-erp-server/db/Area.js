@@ -31,7 +31,7 @@ const Area = seq.define(
     },
     createDate: {
       type: Sequelize.DATE,
-      field: "create_data",
+      field: "create_date",
     },
     modifyDate: {
       type: Sequelize.DATE,

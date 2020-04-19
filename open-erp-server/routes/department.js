@@ -1,7 +1,5 @@
 var express = require("express");
-var SysDep = require("../model/department");
 const { Department } = require("../db/Department");
-const Boom = require("boom");
 var router = express.Router();
 
 const attributes = ["id", "name", "parentId", "level", "seq", "remark"];

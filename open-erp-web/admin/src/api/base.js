@@ -1,43 +1,39 @@
 import axios from "./HttpRequest";
 
-class BaseApi {
-  constructor(moudleUrl) {
-    this.moudleUrl = moudleUrl;
-  }
-
-  list (params) {
+function BaseApi(moudleUrl) {
+  var o = {};
+  o.moudleUrl = moudleUrl;
+  o.list = function (params) {
     return axios({
-      url: `${this.moudleUrl}/`,
-      params
-    })
-  }
-
-  getById (id) {
-    return axios.get(`${this.moudleUrl}/${id}`)
-  }
-
-  insert (data) {
+      method: "GET",
+      url: `${moudleUrl}/`,
+      params,
+    });
+  };
+  o.getById = function (id) {
+    return axios.get(`${moudleUrl}/${id}`);
+  };
+  o.insert = function (data) {
     return axios({
-      url: `${this.moudleUrl}/`,
-      method: 'POST',
-      data
-    })
-  }
-
-  update (id, data) {
+      url: `${moudleUrl}/`,
+      method: "POST",
+      data,
+    });
+  };
+  o.update = function (id, data) {
     return axios({
-      url: `${this.moudleUrl}/${id}`,
-      method: 'PUT',
-      data
-    })
-  }
-
-  delete (id) {
+      url: `${moudleUrl}/${id}`,
+      method: "PUT",
+      data,
+    });
+  };
+  o.delete = function (id) {
     return axios({
-      url: `${this.moudleUrl}/${id}`,
-      method: 'DELETE'
-    })
-  }
+      url: `${moudleUrl}/${id}`,
+      method: "DELETE",
+    });
+  };
+  return o;
 }
 
-export default BaseApi
+export default BaseApi;

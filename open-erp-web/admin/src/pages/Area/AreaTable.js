@@ -8,12 +8,12 @@ function AreaTable(props) {
       dataIndex: "index",
       render: (text, record, index) => <span>{index + 1}</span>,
     },
-    { title: "地区编码", dataIndex: "area_code" },
-    { title: "上级编码", dataIndex: "parent_area_code" },
-    { title: "地区名称", dataIndex: "area_name" },
+    { title: "地区编码", dataIndex: "areaCode" },
+    { title: "上级编码", dataIndex: "parentAreaCode" },
+    { title: "地区名称", dataIndex: "areaName" },
     {
       title: "地区状态",
-      dataIndex: "area_status",
+      dataIndex: "areaStatus",
       render: (text, record) => (
         <span style={{ color: record.area_code ? "green" : "red" }}>•</span>
       ),

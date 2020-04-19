@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './asset/css/index.less'
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
-import configureStore from './store'
+import store from './store'
 // antd 中文环境配置
 import zhCN from 'antd/es/locale/zh_CN'
 import { ConfigProvider } from 'antd'
@@ -12,8 +12,6 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { commonRoutes } from './routers'
 import App from './App'
 import Loading from './components/Loading'
-
-const store = configureStore()
 
 ReactDOM.render(
   <React.Suspense fallback={<Loading />}>

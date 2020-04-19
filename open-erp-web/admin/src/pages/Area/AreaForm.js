@@ -23,23 +23,23 @@ const ModelContent = (props) => {
       onFinish={props.onFinish}
     >
       <Form.Item
-        name="area_code"
+        name="areaCode"
         label="地区编码"
         rules={[{ required: true, message: "请输入地区编号" }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item name="parent_area_code" label="上级编码">
+      <Form.Item name="parentAreaCode" label="上级编码">
         <Input />
       </Form.Item>
       <Form.Item
-        name="area_name"
+        name="areaName"
         label="地区名称"
         rules={[{ required: true, message: "请输入地区名称" }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item name="area_status" label="启用状态">
+      <Form.Item name="areaStatus" label="启用状态">
         <Switch checked={true} />
       </Form.Item>
       <Form.Item>

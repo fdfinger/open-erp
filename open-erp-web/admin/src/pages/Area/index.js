@@ -6,9 +6,9 @@ import { Card, Button } from "antd";
 import AreaForm from "./AreaForm";
 
 const initFormValues = {
-  area_code: "",
-  parent_area_code: "",
-  area_status: 0,
+  areaCode: "",
+  parentAreaCode: "",
+  areaStatus: 0,
 };
 
 export default class Area extends Component {
@@ -27,7 +27,7 @@ export default class Area extends Component {
   getList(params = {}) {
     Api.area.list(params).then((res) => {
       this.setState({
-        dataSource: (res && res.data) || [],
+        dataSource: (res && res.data.rows) || [],
       });
     });
   }

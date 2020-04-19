@@ -1,0 +1,49 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = login
+
+## 查询所有
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### 查询ID
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### 错误查询ID
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}
+
+
+### 登录
+
+POST http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "username": "sample",
+    "password": "shanghai"
+}
+
+### 修改
+
+PUT http://{{host}}/{{module}}/2 HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "areaCode": "minhang",
+    "parentAreaCode": "shanghai",
+    "areaName": "闵行",
+    "areaStatus": 0
+}
+
+
+### 删除
+
+DELETE http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}

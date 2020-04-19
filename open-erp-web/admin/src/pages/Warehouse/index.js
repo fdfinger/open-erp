@@ -4,7 +4,6 @@ import WarehouseTable from "./WarehouseTable";
 import Api from "../../api";
 import { Card, Button } from "antd";
 import WarehouseForm from "./WarehouseForm";
-import DepartmentSelect from "../../components/DepartmentSelect";
 
 const initFormValues = {
   area_code: "",
@@ -28,7 +27,7 @@ export default class Warehouse extends Component {
   getList(params = {}) {
     Api.warehouse.list(params).then((res) => {
       this.setState({
-        dataSource: (res && res.data) || [],
+        dataSource: (res && res.data.rows) || [],
       });
     });
   }
@@ -100,7 +99,6 @@ export default class Warehouse extends Component {
             </Button>
           }
         >
-          <DepartmentSelect></DepartmentSelect>
           <WarehouseTable
             dataSource={this.state.dataSource}
             editClick={this.openEditFormModal.bind(this)}

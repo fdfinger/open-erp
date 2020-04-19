@@ -43,4 +43,10 @@ export const routers = [
     isShow: true,
     component: React.lazy(() => import("../pages/Warehouse"))
   },
+  {
+    path: '/admin/setting',
+    title: '个人设置',
+    isShow: true,
+    component: React.lazy(() => import("../pages/Setting"))
+  },
 ];

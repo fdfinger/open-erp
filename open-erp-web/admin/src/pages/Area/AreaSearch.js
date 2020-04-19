@@ -20,7 +20,7 @@ const AreaSearch = function (props) {
   return (
     <PageSearch onSearch={handleSearch.bind(this)}>
       <Form form={form} layout="inline" onValuesChange={onValuesChange}>
-        <Form.Item name="area_name" label="地区名称">
+        <Form.Item name="areaName" label="地区名称">
           <Input />
         </Form.Item>
         <Form.Item>

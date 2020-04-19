@@ -8,13 +8,13 @@ function WarehouseTable(props) {
       dataIndex: "index",
       render: (text, record, index) => <span>{index + 1}</span>,
     },
-    { title: "仓库编码", dataIndex: "warehouse_code" },
-    { title: "所属部门", dataIndex: "sys_dept_id" },
+    { title: "仓库编码", dataIndex: "warehouseCode" },
+    { title: "所属部门", dataIndex: "sysDeptId" },
     {
       title: "启用状态",
-      dataIndex: "area_status",
+      dataIndex: "areaStatus",
       render: (text, record) => (
-        <span>{ record.warehouse_status ? "启用" : "停用" }</span>
+        <span>{ record.areaStatus ? "启用" : "停用" }</span>
       ),
     },
     {
@@ -26,7 +26,7 @@ function WarehouseTable(props) {
             编辑
           </Button>
           <Popconfirm
-            title={`确认删除【${record.area_name}】吗?`}
+            title={`确认删除【${record.areaName}】吗?`}
             onConfirm={DeleteClick.bind(this, record)}
           >
             <Button type="link">删除</Button>

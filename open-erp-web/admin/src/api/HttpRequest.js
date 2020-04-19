@@ -12,7 +12,8 @@ instance.interceptors.request.use(
     return config;
   },
   (err) => {
-    return Promise.reject(err);
+    message.error('网络连接异常，请稍后重试');
+    return {};
   }
 );
 
@@ -22,8 +23,8 @@ instance.interceptors.response.use(
     return data;
   },
   (err) => {
-    message.error((err.response && err.response.data) || '网络连接异常，请稍后重试');
-    return Promise.reject(err);
+    message.error('网络连接异常，请稍后重试');
+    return {};
   }
 );
 

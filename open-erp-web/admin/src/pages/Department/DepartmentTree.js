@@ -25,7 +25,7 @@ const DepartmentTree = (props) => {
     getList({ level: 0 }).then((res) => {
       const newTreeData =
         (res.data &&
-          res.data.map((item) => ({
+          res.data.rows.map((item) => ({
             key: String(item.id),
             title: item.name,
           }))) ||
