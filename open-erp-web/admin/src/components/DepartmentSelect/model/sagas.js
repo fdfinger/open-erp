@@ -5,7 +5,8 @@ import { getList } from '../../../api/department';
 
 function* fetchDepartment(action) {
   try {
-    const department = yield call(getList, action.payload)
+    const department = yield call(getList, action.payload.data)
+    console.log(department)
     yield put(initDepartment(department))
   } catch (error) {
     

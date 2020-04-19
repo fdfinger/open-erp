@@ -1,24 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { initDepartment } from './model/actions'
+import { initDepartment } from "./model/actions";
 
 export class DepartmentSelectCon extends Component {
-  componentDidMount(){
-    const { getDepartments } = this.props
-    getDepartments()
+  componentDidMount() {
+    const { getDepartments } = this.props;
+    getDepartments();
   }
   render() {
-    const { departments } = this.props
-  return <div>{departments}</div>;
+    const { departments } = this.props;
+    return <div>{JSON.stringify(departments)}</div>;
   }
 }
 
 const mapStateToProps = (state) => ({
-  departments: state.items
+  departments: state.items,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getDepartments: () => dispatch(initDepartment([]))
+  getDepartments: () => dispatch(initDepartment([])),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentSelectCon);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DepartmentSelectCon);

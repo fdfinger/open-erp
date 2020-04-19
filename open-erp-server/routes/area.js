@@ -1,74 +1,121 @@
-var express = require('express');
-var SysArea = require('../model/area');
-const Boom = require('boom')
+var express = require("express");
+const { Area } = require("../db/Area");
 var router = express.Router();
 
+const attributes = [
+  "id",
+  "areaCode",
+  "parentAreaCode",
+  "areaName",
+  "areaStatus",
+  "createDate",
+];
+
 /* 列表 */
-router.get('/', function(req, res, next) {
-  SysArea.get(req.query, function(err, rows, fields){
-    if (err) {
-      Boom.badRequest(new Error(err.stack))
-    }
-    res.json({
-      data: rows
+router.get("/", function (req, res, next) {
+  Area.findAndCountAll({ where: req.query, attributes })
+    .then((result) => {
+      res.json({
+        data: result,
+      });
     })
-  })
+    .catch(() => {
+      next();
+    });
 });
 
-router.get('/:id', function(req, res, next) {
-  const id = req.param('id')
+router.get("/:id", function (req, res, next) {
+  const id = req.params.id;
   if (id) {
-    SysArea.getById(Number(id), function (err, rows, fields) {
-      if (err) {
-        Boom.badRequest(new Error(err.stack))
-      }
-      res.json({
-        data: rows
+    Area.findOne({ where: { id } })
+      .then((result) => {
+        res.json({
+          statusCode: 200,
+          message: "操作成功",
+          data: result || {},
+        });
       })
-    })
+      .catch(() => {
+        next();
+      });
+  } else {
+    next();
   }
-  next
-})
+});
 
 /** 新增 */
-router.post('/', function (req, res, next) {
+router.post("/", function (req, res, next) {
   const query = req.body;
-  SysArea.add(query, function (err, rows, fields) {
-    if (err) {
-      Boom.badRequest(new Error(err.stack));
-    }
-    res.json({
-      data: rows
-    })
-  })
-})
+  if (query) {
+    Area.create(query)
+      .then((result) => {
+        res.json({ result });
+      })
+      .catch(() => {
+        next();
+      });
+  } else {
+    next();
+  }
+});
 
-/** 更新 */
-router.put('/:id', function (req, res, next) {
-  const id = req.param('id')
+/**
+ * 更新
+ * @description /department/:id body= [{key:value}]
+ */
+router.put("/:id", function (req, res, next) {
+  const id = req.params.id;
   const params = req.body;
-  const newParams = Object.assign({id: Number(id)}, params)
-  SysArea.update(newParams, function (err, rows, fields) {
-    if (err) {
-      Boom.badRequest(new Error(err.stack))
-    }
-    res.json({
-      data: rows
+  const newParams = Object.assign({}, { id: Number(id) }, params);
+  if (id) {
+    Area.update(newParams, {
+      where: { id },
     })
-  })
-})
+      .then(() => {
+        res.json({
+          statusCode: 200,
+          message: "操作成功",
+          data: {},
+        });
+      })
+      .catch(() => {
+        res.json({
+          statusCode: 400,
+          message: "操作失败",
+          data: {},
+        });
+      });
+  } else {
+    next();
+  }
+});
 
-/** 删除 */
-router.delete('/:id', function (req, res, next) {
-  const id = req.param('id')
-  SysArea.remove(Number(id), function (err, rows, fields) {
-    if (err) {
-      Boom.badRequest(new Error(err.stack))
-    }
-    res.json({
-      data: rows
+/**
+ * 删除
+ * */
+router.delete("/:id", function (req, res, next) {
+  const id = req.params.id;
+  if (id) {
+    Area.destroy({
+      where: { id },
     })
-  })
-})
+      .then((result) => {
+        res.json({
+          statusCode: 200,
+          message: "操作成功",
+          data: { result },
+        });
+      })
+      .catch(() => {
+        res.json({
+          statusCode: 400,
+          message: "操作失败",
+          data: {},
+        });
+      });
+  } else {
+    next();
+  }
+});
 
 module.exports = router;

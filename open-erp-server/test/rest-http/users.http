@@ -2,7 +2,7 @@
 @port = 3000
 @host = {{hostname}}:{{port}}
 @contentType = application/json
-@module = warehouse
+@module = users
 
 ## 查询所有
 
@@ -26,11 +26,16 @@ POST http://{{host}}/{{module}}/ HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "warehouseCode": "121212",
-    "sysDeptId": 0,
-    "warehouseStatus": 0,
-    "warehouseName": "大中华区总仓库",
-    "warehouseRemark": "大中华区总仓库"
+    "username": "sample",
+    "telephone": "15229371873",
+    "mail": "jiangfei.ng@foxmail.com",
+    "sex": 1,
+    "education": "本科",
+    "job": "程序员",
+    "password": "123",
+    "remark": "学识渊博",
+    "status": 1,
+    "depId": 1
 }
 
 ### 修改
@@ -39,11 +44,16 @@ PUT http://{{host}}/{{module}}/2 HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "warehouseCode": "121212",
-    "sysDeptId": 0,
-    "warehouseStatus": 0,
-    "warehouseName": "大中华区总仓库",
-    "warehouseRemark": "大中华区总仓库"
+    "username": "jiangfei2",
+    "telephone": "15229371873",
+    "mail": "jiangfei.ng@foxmail.com",
+    "sex": 1,
+    "education": "本科",
+    "job": "程序员",
+    "password": "333",
+    "remark": "学识ok",
+    "status": 1,
+    "depId": 1
 }
 
 
