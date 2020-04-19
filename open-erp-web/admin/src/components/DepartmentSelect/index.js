@@ -1,31 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Button } from 'antd'
-import { delNumber, addNumber } from '../../store/count/actions'
+import React from 'react'
+import { Provider } from 'react-redux'
+import store from './model'
+import DepartmentSelectCon from './DepartmentSelectCon'
 
-class DepartmentSelect extends Component {
-  render() {
-    const { addHandleClick, decHandleClicK} = this.props
-    return (
-      <div>
-        <Button onClick={addHandleClick}>+</Button>
-        <Button onClick={decHandleClicK}>-</Button>
-        {this.props.number}
-      </div>
-    )
-  }
+export default function DepartmentSelect() {
+  return (
+    <Provider store={store}>
+      <DepartmentSelectCon></DepartmentSelectCon>
+    </Provider>
+  )
 }
-
-const mapStateToProps = (state) => ({
-  number: state.number,
-  list: state.list
-})
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addHandleClick: ()=> dispatch(addNumber(1)),
-    decHandleClicK: ()=> dispatch(delNumber(1))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentSelect)
