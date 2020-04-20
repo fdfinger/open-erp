@@ -28,7 +28,6 @@ const initState = {
 };
 
 export const areaReducer = (state = initState, action) => {
-  console.log(action);
   switch (action.type) {
     // 更新表格
     case AREA_UPDATE_TABLE:

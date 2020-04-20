@@ -33,7 +33,7 @@ function Area({
 }) {
   useEffect(() => {
     handleSearch();
-  }, [title]);
+  }, [handleSearch]);
 
   return (
     <div>
