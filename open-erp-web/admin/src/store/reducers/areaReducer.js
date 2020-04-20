@@ -1,11 +1,12 @@
 import {
-  AREA_SEARCH_CLICK,
   AREA_SEARCH_FROM_CHANGE,
   AREA_OPEN_FORM_MODEL_TO_ADD,
   AREA_OPEN_FROM_MODEL_TO_EDIT,
   AREA_TABLE_ON_DELETE,
   AREA_EDIT_FORM_ON_FINISH,
   AREA_CLOSE_FORM_MODEL,
+  AREA_UPDATE_DELETE_ID,
+  AREA_UPDATE_TABLE
 } from "../constant/area";
 
 // 初始表单
@@ -21,19 +22,20 @@ const initState = {
   title: "新增",
   hasEdit: false,
   hasEditLoading: false,
-  editInitValues: {},
-  searchForm: initFormValues,
+  editInitValues: initFormValues,
+  searchForm: {},
+  needDeleteID: 0
 };
 
 export const areaReducer = (state = initState, action) => {
   console.log(action);
   switch (action.type) {
-    // 查询 异步
-    case AREA_SEARCH_CLICK:
-      return Object.assign({}, state, action.value);
+    // 更新表格
+    case AREA_UPDATE_TABLE:
+      return { ...state, dataSource: action.value };
     // 查询数据的变化
-    case AREA_SEARCH_FROM_CHANGE: 
-      return Object.assign({}, state, action.value);
+    case AREA_SEARCH_FROM_CHANGE:
+      return { ...state, searchForm: action.value };
     // 打开新增 modal
     case AREA_OPEN_FORM_MODEL_TO_ADD:
       return {
@@ -44,7 +46,12 @@ export const areaReducer = (state = initState, action) => {
       };
     // 打开编辑 modal
     case AREA_OPEN_FROM_MODEL_TO_EDIT:
-      return Object.assign({}, state, action.value);
+      return {
+        ...state,
+        title: "修改",
+        hasEdit: true,
+        editInitValues: action.value,
+      };
     // 表格删除操作 异步
     case AREA_TABLE_ON_DELETE:
       return Object.assign({}, state, action.value);
@@ -53,10 +60,9 @@ export const areaReducer = (state = initState, action) => {
       return Object.assign({}, state, action.value);
     // 表单关闭 关闭窗口 清空表单数据
     case AREA_CLOSE_FORM_MODEL:
-      return Object.assign({}, state, {
-        hasEdit: false,
-        editInitValues: initFormValues,
-      });
+      return { ...state, hasEdit: false, editInitValues: initFormValues };
+    case AREA_UPDATE_DELETE_ID:
+      return { ...state, needDeleteID: action.value}
     default:
       break;
   }
