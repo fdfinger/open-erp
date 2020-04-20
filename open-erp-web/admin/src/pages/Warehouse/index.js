@@ -27,7 +27,7 @@ export default class Warehouse extends Component {
   getList(params = {}) {
     Api.warehouse.list(params).then((res) => {
       this.setState({
-        dataSource: (res && res.data.rows) || [],
+        dataSource: (res && res.data && res.data.rows) || [],
       });
     });
   }

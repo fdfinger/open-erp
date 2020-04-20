@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Menu, Row, Col } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { routers } from "../../routers";
 
@@ -14,34 +14,30 @@ const headerIconStyle = {
   color: "#fff",
 };
 
+const HeaderMenu = () => (
+  <>
+    <Link to="/admin/setting">
+      <UserOutlined style={headerIconStyle} />
+      用户
+    </Link>
+    <Link to="/admin/dashboard">
+      <UserOutlined style={headerIconStyle} />
+      系统首页
+    </Link>
+    <Link to="/admin/message">
+      <UserOutlined style={headerIconStyle} />
+      消息
+    </Link>
+    <Link to="/admin/login">
+      <UserOutlined style={headerIconStyle} />
+      退出
+    </Link>
+  </>
+);
 class FrameOut extends Component {
   handleMenuClick = ({ key }) => {
     this.props.history.push(key)
   }
-  headerMenu = () => (
-    <Menu theme="dark" mode="horizontal">
-      <Menu.Item key="/admin/setting">
-        <UserOutlined style={headerIconStyle} />
-        用户
-      </Menu.Item>
-      <Menu.Item key="/admin/dashboard">
-        <UserOutlined style={headerIconStyle} />
-        系统首页
-      </Menu.Item>
-      <Menu.Item key="/admin/message">
-        <UserOutlined style={headerIconStyle} />
-        信息
-      </Menu.Item>
-      <Menu.Item key="/admin/setting">
-        <UserOutlined style={headerIconStyle} />
-        个人设置
-      </Menu.Item>
-      <Menu.Item key="/login">
-        <UserOutlined style={headerIconStyle} />
-        退出
-      </Menu.Item>
-    </Menu>
-  );
   render() {
     return (
       <Layout style={{ height: "100vh" }}>
@@ -51,6 +47,7 @@ class FrameOut extends Component {
               <h1 style={{ color: "#fff" }}>数字化工厂ERP管理系统</h1>
             </Col>
             <Col span={11} offset={5}>
+              <HeaderMenu />
             </Col>
           </Row>
         </Header>
