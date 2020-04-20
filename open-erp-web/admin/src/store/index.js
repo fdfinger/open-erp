@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import createSageMiddleware from "redux-saga";
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import { createHashHistory } from  'history';
-import { defReducer } from "./reducers/defReducer";
-
 import { allSaga } from "./sagas";
+import { defReducer } from "./reducers/defReducer";
 import { userReducer } from "./reducers/userReducer";
+import { areaReducer } from './reducers/areaReducer'
 
 const sageMiddlerware = createSageMiddleware();
 
@@ -15,6 +15,7 @@ const store = createStore(
   combineReducers({
     def: defReducer,
     login: userReducer,
+    area: areaReducer,
     routing: routerReducer
   }),
   {},

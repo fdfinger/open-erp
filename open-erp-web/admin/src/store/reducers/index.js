@@ -1,5 +1,2 @@
-import { defReducer } from "./defReducer";
-
-export default {
-  defReducer
-}
+export { areaReducer } from './areaReducer';
+export { defReducer } from "./defReducer";

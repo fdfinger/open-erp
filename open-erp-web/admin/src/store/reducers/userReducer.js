@@ -1,7 +1,6 @@
 import { actions } from "../constant";
 
 export const userReducer = (state = {}, action) => {
-  console.log(action);
   switch (action.type) {
     case actions.LOGIN_SUBMIT:
       return Object.assign({}, state, action.value);
