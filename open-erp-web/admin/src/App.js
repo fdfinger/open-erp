@@ -11,7 +11,7 @@ export default class App extends Component {
       <FrameOut>
         <Switch>
           {routers.map(route => {
-            // TODO 做授權
+            // TODO 做授权
             return <route.component key={route.path} exact {...route} />
           })}
           <Redirect exact from="/admin" to="/admin/dashboard"/>
