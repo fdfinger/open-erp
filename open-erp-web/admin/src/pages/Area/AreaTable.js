@@ -27,7 +27,7 @@ function AreaTable(props) {
             编辑
           </Button>
           <Popconfirm
-            title={`确认删除【${record.area_name}】吗?`}
+            title={`确认删除【${record.areaName}】吗?`}
             onConfirm={DeleteClick.bind(this, record)}
           >
             <Button type="link">删除</Button>
@@ -51,6 +51,7 @@ function AreaTable(props) {
       dataSource={props.dataSource}
       columns={columns}
       rowKey={(record) => record.id}
+      pagination={props.pagination}
     />
   );
 }

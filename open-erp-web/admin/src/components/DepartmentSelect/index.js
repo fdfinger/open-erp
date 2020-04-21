@@ -1,12 +1,33 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import store from './model'
-import DepartmentSelectCon from './DepartmentSelectCon'
+import React from "react";
+import { Select } from "antd";
+import { connect } from "react-redux";
 
-export default function DepartmentSelect() {
+const { Option } = Select;
+
+/**
+ * 地区选择框
+ * @param {object} props
+ */
+
+function DepartmentSelect(props) {
+  const { selectData, dispatch, ...otherProps } = props
   return (
-    <Provider store={store}>
-      <DepartmentSelectCon></DepartmentSelectCon>
-    </Provider>
-  )
+    <Select {...otherProps}>
+      {selectData.map((selectItem) => {
+        return (
+          <Option key={selectItem.areaCode} value={selectItem.areaCode}>
+            {selectItem.areaName}
+          </Option>
+        );
+      })}
+    </Select>
+  );
 }
+
+const mapStateToProps = function (state) {
+  return {
+    selectData: state.area.selectData,
+  };
+};
+
+export default connect(mapStateToProps)(DepartmentSelect);

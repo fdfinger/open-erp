@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Form, Input, Switch, Button, Modal } from "antd";
+import DepartmentSelect from "../../components/DepartmentSelect";
 
 const formItemLayout = {
   labelCol: {
@@ -9,7 +10,7 @@ const formItemLayout = {
 };
 
 const ModelContent = (props) => {
-  const form = useRef()
+  const form = useRef();
 
   useEffect(() => {
     form.current.resetFields();
@@ -30,7 +31,7 @@ const ModelContent = (props) => {
         <Input />
       </Form.Item>
       <Form.Item name="parentAreaCode" label="上级编码">
-        <Input />
+        <DepartmentSelect />
       </Form.Item>
       <Form.Item
         name="areaName"
@@ -52,7 +53,7 @@ const ModelContent = (props) => {
       </Form.Item>
     </Form>
   );
-}
+};
 
 const AreaForm = (props) => {
   return (

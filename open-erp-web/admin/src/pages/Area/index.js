@@ -22,6 +22,7 @@ function Area({
   hasEdit,
   hasEditLoading,
   dataSource,
+  count,
   EditFormFinish,
   openAddFormModal,
   closeFormModel,
@@ -29,7 +30,7 @@ function Area({
   handleSearch,
   openEditFormModal,
   onTableDelete,
-  updateDeleteId,
+  searchForm,
 }) {
   useEffect(() => {
     handleSearch();
@@ -37,7 +38,10 @@ function Area({
 
   return (
     <div>
-      <AreaSearch onChange={onSearchChange} onSearch={handleSearch} />
+      <AreaSearch
+        onChange={onSearchChange}
+        onSearch={() => handleSearch({ page: 1 })}
+      />
       <Card
         title="数据列表"
         bodyStyle={{ padding: 0 }}
@@ -51,9 +55,20 @@ function Area({
         <AreaTable
           dataSource={dataSource}
           editClick={openEditFormModal}
-          deleteClick={(id) => {
-            updateDeleteId(id);
-            onTableDelete();
+          deleteClick={(record) => {
+            onTableDelete(record.id);
+          }}
+          pagination={{
+            position: ["bottomLeft"],
+            current: searchForm.page,
+            defaultPageSize: searchForm.pageSize,
+            pageSize: searchForm.pageSize,
+            total: count,
+            showTotal: (total) => `${total}条记录`,
+            onChange: (page, pageSize) => {
+              onSearchChange({ page, pageSize });
+              handleSearch();
+            },
           }}
         />
       </Card>

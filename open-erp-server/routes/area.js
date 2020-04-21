@@ -13,7 +13,12 @@ const attributes = [
 
 /* 列表 */
 router.get("/", function (req, res, next) {
-  Area.findAndCountAll({ where: req.query, attributes })
+  const { page , pageSize, ...query } = req.query
+  const parsePage = parseInt(page)
+  const parseSize = parseInt(pageSize)
+  const defaultPagination = { offset: parsePage ? (parsePage - 1) * parseSize : undefined, limit: parsePage ? parseSize : undefined }
+  console.log(defaultPagination)
+  Area.findAndCountAll({ ...defaultPagination,  where: query, attributes })
     .then((result) => {
       res.json({
         data: result,

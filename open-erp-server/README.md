@@ -138,3 +138,17 @@ router.use(jwtAuth)
 ``` shell
 $ yarn add mysql
 ```
+
+### `sequelize` sequelize orm数据库
+> [sequelize文档](https://www.npmjs.com/package/mysql)
+
+安装
+``` shell
+$ yarn add sequelize
+```
+
+### Pagination / Limiting
+
+``` javascript
+Project.findAll({ offset: 5, limit: 5 })
+```

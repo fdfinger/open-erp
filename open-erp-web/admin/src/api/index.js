@@ -2,8 +2,8 @@ import BaseApi from "./base";
 import login from "./login";
 
 export default {
-  area: new BaseApi('area'),
-  warehouse: new BaseApi('warehouse'),
-  user: new BaseApi('users'),
+  area: BaseApi('area'),
+  warehouse: BaseApi('warehouse'),
+  user: BaseApi('users'),
   login: login
 }
