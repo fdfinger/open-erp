@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 22/04/2020 22:21:32
+ Date: 22/04/2020 23:36:25
 */
 
 SET NAMES utf8mb4;
@@ -108,7 +108,8 @@ CREATE TABLE `sys_pro_cata`  (
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
   `id` int(32) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `username` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名字',
+  `username` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '登陆账号',
+  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户昵称',
   `telephone` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户手机号',
   `mail` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户邮箱',
   `sex` int(1) NOT NULL DEFAULT 0 COMMENT '性别',
@@ -121,15 +122,17 @@ CREATE TABLE `sys_user`  (
   `operator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '操作人',
   `operator_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '操作时间',
   `operator_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '操作人的ip',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `部门Id`(`dep_id`) USING BTREE,
+  CONSTRAINT `部门Id` FOREIGN KEY (`dep_id`) REFERENCES `sys_dept` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (2, 'jiangfei2', '15229371873', 'jiangfei.ng@foxmail.com', 1, '本科', '程序员', '333', '学识ok', 1, 1, '', '2020-04-19 07:53:22', '');
-INSERT INTO `sys_user` VALUES (3, 'sample', '15229371873', 'jiangfei.ng@foxmail.com', 1, '本科', '程序员', '123', '学识渊博', 1, 1, '', '2020-04-19 07:50:57', '');
-INSERT INTO `sys_user` VALUES (4, 'sample', '15229371873', 'jiangfei.ng@foxmail.com', 1, '本科', '程序员', '123', '学识渊博', 1, 1, '', '2020-04-19 07:51:12', '');
+INSERT INTO `sys_user` VALUES (2, 'jiangfei2', '江飞', '15229371873', 'jiangfei.ng@foxmail.com', 1, '本科', '程序员', '333', '学识ok', 1, 1, '', '2020-04-22 15:16:08', '');
+INSERT INTO `sys_user` VALUES (3, 'sample', '', '15229371873', 'jiangfei.ng@foxmail.com', 1, '本科', '程序员', '123', '学识渊博', 1, 1, '', '2020-04-19 07:50:57', '');
+INSERT INTO `sys_user` VALUES (4, 'sample', '', '15229371873', 'jiangfei.ng@foxmail.com', 1, '本科', '程序员', '123', '学识渊博', 1, 1, '', '2020-04-19 07:51:12', '');
 
 -- ----------------------------
 -- Table structure for warehouse

@@ -6,6 +6,7 @@ var router = express.Router();
 const showAttrs = [
   "id",
   "username",
+  "nickname",
   "telephone",
   "mail",
   "sex",

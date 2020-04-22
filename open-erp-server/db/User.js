@@ -9,6 +9,10 @@ const User = seq.define("sys_user", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  nickname: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   telephone: {
     type: Sequelize.STRING,
     allowNull: false,

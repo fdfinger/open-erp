@@ -9,7 +9,7 @@ function UserTable({ editClick, deleteClick, dataSource, pagination }) {
       render: (text, record, index) => <span>{index + 1}</span>,
     },
     { title: "部门名称", dataIndex: "depId" },
-    { title: "用户姓名", dataIndex: "username" },
+    { title: "用户姓名", dataIndex: "nickname" },
     { title: "登录账号", dataIndex: "username" },
     {
       title: "性别",

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Form, Input, Switch, Button, Modal } from "antd";
+import { Form, Input, Button, Modal, Select } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -23,21 +23,67 @@ const ModelContent = (props) => {
       onFinish={props.onFinish}
     >
       <Form.Item
-        name="areaCode"
-        label="地区编码"
-        rules={[{ required: true, message: "请输入地区编号" }]}
+        name="depId"
+        label="部门"
+        rules={[{ required: true, message: "请选择部门" }]}
+      >
+        <Select />
+      </Form.Item>
+      <Form.Item
+        name="nickname"
+        label="用户姓名"
+        rules={[{ required: true, message: "请输入用户姓名" }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name="areaName"
-        label="地区名称"
-        rules={[{ required: true, message: "请输入地区名称" }]}
+        name="username"
+        label="登陆账号"
+        rules={[{ required: true, message: "请输入登陆账号" }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item name="areaStatus" label="启用状态">
-        <Switch checked={true} />
+      {props.title === "新增" ? (
+        <Form.Item
+          name="password"
+          label="初始密码"
+          rules={[{ required: true, message: "请输入初始密码" }]}
+        >
+          <Input type="password" />
+        </Form.Item>
+      ) : (
+        ""
+      )}
+      <Form.Item
+        name="sex"
+        label="性别"
+        rules={[{ required: true, message: "请输入性别" }]}
+      >
+        <Select>
+          <Select.Option value={1}>男</Select.Option>
+          <Select.Option value={0}>女</Select.Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name="education"
+        label="学历"
+        rules={[{ required: true, message: "请输入学历" }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="job"
+        label="职务"
+        rules={[{ required: true, message: "请输入职务" }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="telephone"
+        label="电话"
+        rules={[{ required: true, message: "请输入电话" }]}
+      >
+        <Input />
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={props.hasEditLoading}>
@@ -51,7 +97,7 @@ const ModelContent = (props) => {
   );
 };
 
-const AreaForm = (props) => {
+const UserForm = (props) => {
   return (
     <Modal
       title={props.title}
@@ -64,4 +110,4 @@ const AreaForm = (props) => {
   );
 };
 
-export default AreaForm;
+export default UserForm;
