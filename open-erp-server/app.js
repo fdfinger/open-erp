@@ -12,6 +12,7 @@ var areaRouter = require('./routes/area')
 var warehouseRouter = require('./routes/warehouse')
 var loginRouter = require('./routes/login')
 var processCataRouter = require('./routes/processCata')
+var processRouter = require('./routes/process')
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/area', areaRouter);
 app.use('/warehouse', warehouseRouter);
 app.use('/login', loginRouter);
 app.use('/processCata', processCataRouter);
+app.use('/process', processRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
