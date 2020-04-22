@@ -11,21 +11,25 @@ const ProcessCata = seq.define(
     cataCode: {
       type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: '',
       field: "pro_cata_code",
     },
     cataName: {
       type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: '',
       field: "pro_cata_name",
     },
     cataStatus: {
       type: Sequelize.INTEGER,
       allowNull: false,
+      defaultValue: 0,
       field: "pro_cata_status",
     },
     cataRemark: {
       type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: '',
       field: "pro_cata_remark",
     },
     createDate: {
