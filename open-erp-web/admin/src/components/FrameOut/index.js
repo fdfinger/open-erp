@@ -28,7 +28,7 @@ const HeaderMenu = () => (
       <UserOutlined style={headerIconStyle} />
       消息
     </Link>
-    <Link to="/admin/login">
+    <Link to="/login">
       <UserOutlined style={headerIconStyle} />
       退出
     </Link>

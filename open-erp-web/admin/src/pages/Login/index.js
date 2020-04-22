@@ -1,24 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button, Card } from "antd";
+import { onFinish } from "../../store/actions/login";
 
-function Login (props) {
-  const onFinish = (value) => {
-    props.dispatch({
-      type: "LOGIN_SUBMIT",
-      value,
-    });
-  };
-  
-  
+function Login({ onFinish }) {
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: '#eee',
-        height: '100vh'
+        backgroundColor: "#eee",
+        height: "100vh",
       }}
     >
       <Card
@@ -34,11 +27,7 @@ function Login (props) {
             <Input type="password" />
           </Form.Item>
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ width: "100%" }}
-            >
+            <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
               登录
             </Button>
           </Form.Item>
@@ -48,5 +37,4 @@ function Login (props) {
   );
 }
 
-
-export default connect()(Login);
+export default connect(null, { onFinish })(Login);

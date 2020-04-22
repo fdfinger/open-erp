@@ -1,27 +1,25 @@
-import { takeEvery, select, call, put } from 'redux-saga/effects'
-import { push } from 'react-router-redux'
-import api from '../../api'
-import { actions } from '../constant'
+import { takeEvery, select, call, put } from "redux-saga/effects";
+import { push } from "react-router-redux";
+import api from "../../api";
+import { LOGIN_SUBMIT, LOGIN_SUCCESS, LOGIN_ERROR } from "../constant/login";
 
-export function* loginSaga () {
-  yield takeEvery(actions.LOGIN_SUBMIT, function* () {
+export function* loginSaga() {
+  yield takeEvery(LOGIN_SUBMIT, function* () {
     try {
-      const state = yield select(state => state.login)
-      const res = yield call(api.login.login, state)
-      if (res.data) {
+      const state = yield select((state) => state.login);
+      const res = yield call(api.login.login, state);
+      if ('data' in res) {
         yield put({
-          type: actions.LOGIN_SUCCESS,
-          value: res.data
-        })
-        yield put(push('/admin/dashboard'))
+          type: LOGIN_SUCCESS,
+          value: res,
+        });
+        yield put(push("/admin/dashboard"));
       } else {
         yield put({
-          type: actions.LOGIN_ERROR,
-          value: res.data
-        })
+          type: LOGIN_ERROR,
+          value: res,
+        });
       }
-    } catch (error) {
-      
-    }
-  })
+    } catch (error) {}
+  });
 }

@@ -6,6 +6,7 @@ import { allSaga } from "./sagas";
 import { defReducer } from "./reducers/defReducer";
 import { userReducer } from "./reducers/userReducer";
 import { areaReducer } from './reducers/areaReducer'
+import { loginReducer } from './reducers/loginReducer'
 
 const sageMiddlerware = createSageMiddleware();
 
@@ -14,7 +15,8 @@ const middleware = routerMiddleware(createHashHistory())
 const store = createStore(
   combineReducers({
     def: defReducer,
-    login: userReducer,
+    login: loginReducer,
+    user: userReducer,
     area: areaReducer,
     routing: routerReducer
   }),

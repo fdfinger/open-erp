@@ -1,6 +1,4 @@
 var Warehouse = require('../db/Warehouse');
-const RestfulFactory = require('../utils/restfulFactory')
+const getNewFactory = require('../utils/restfulFactory')
 
-var router = new RestfulFactory(Warehouse).render()
-
-module.exports = router;
+module.exports = getNewFactory(Warehouse);

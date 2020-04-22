@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Form, Input, Switch, Button, Modal } from "antd";
-import AreaSelect from "../../components/AreaSelect";
 
 const formItemLayout = {
   labelCol: {
@@ -29,9 +28,6 @@ const ModelContent = (props) => {
         rules={[{ required: true, message: "请输入地区编号" }]}
       >
         <Input />
-      </Form.Item>
-      <Form.Item name="parentAreaCode" label="上级编码">
-        <AreaSelect/>
       </Form.Item>
       <Form.Item
         name="areaName"

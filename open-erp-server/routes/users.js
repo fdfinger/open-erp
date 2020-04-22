@@ -19,8 +19,17 @@ const showAttrs = [
 /* 列表 */
 router.get("/", function (req, res, next) {
   // /users/
+  const { page, pageSize, ...query } = req.query;
+  const parsePage = parseInt(page);
+  const parseSize = parseInt(pageSize);
+  const defaultPagination = {
+    offset: parsePage ? (parsePage - 1) * parseSize : undefined,
+    limit: parsePage ? parseSize : undefined,
+  };
   User.findAndCountAll({
+    ...defaultPagination,
     attributes: showAttrs,
+    where: query,
   }).then((result) => {
     res.json({ data: result });
   });
