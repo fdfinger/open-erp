@@ -38,6 +38,7 @@ const ProcessCata = seq.define(
     },
     modifyDate: {
       type: Sequelize.DATE,
+      defaultValue: new Date(),
       field: "modify_date",
     },
   },

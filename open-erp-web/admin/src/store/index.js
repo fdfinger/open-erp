@@ -7,6 +7,7 @@ import { defReducer } from "./reducers/defReducer";
 import { userReducer } from "./reducers/userReducer";
 import { areaReducer } from './reducers/areaReducer'
 import { loginReducer } from './reducers/loginReducer'
+import { processCataReducer } from './reducers/processCataReducer'
 
 const sageMiddlerware = createSageMiddleware();
 
@@ -18,6 +19,7 @@ const store = createStore(
     login: loginReducer,
     user: userReducer,
     area: areaReducer,
+    processCata: processCataReducer,
     routing: routerReducer
   }),
   {},

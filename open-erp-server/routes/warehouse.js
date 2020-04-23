@@ -1,6 +1,6 @@
-var Warehouse = require("../db/Warehouse");
-var getNewFactory = require("./restfulFactory.js");
+const Warehouse = require("../db/Warehouse");
+const getNewFactory = require("./restfulFactory.js");
+const express = require("express");
+const router = express.Router();
 
-const router = getNewFactory(Warehouse);
-
-module.exports = router;
+module.exports = getNewFactory(router, Warehouse);

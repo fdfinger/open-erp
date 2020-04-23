@@ -1,7 +1,5 @@
-var express = require("express");
-var router = express.Router();
 
-function getNewFactory(tableModel, attributes) {
+function getNewFactory(router, tableModel, attributes) {
   if ("findAndCountAll" in tableModel) {
     router.get("/", function (req, res, next) {
       const { page, pageSize, ...query } = req.query;

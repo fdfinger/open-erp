@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地
+ Source Server         : aliyun
  Source Server Type    : MySQL
- Source Server Version : 80018
- Source Host           : localhost:3306
+ Source Server Version : 80017
+ Source Host           : 118.190.237.48:3306
  Source Schema         : openerp
 
  Target Server Type    : MySQL
- Target Server Version : 80018
+ Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 22/04/2020 23:36:25
+ Date: 23/04/2020 22:35:21
 */
 
 SET NAMES utf8mb4;
@@ -79,8 +79,8 @@ CREATE TABLE `sys_pro`  (
   `is_outsourcing` int(1) NOT NULL DEFAULT 0 COMMENT '是否外协',
   `process_status` int(1) NOT NULL DEFAULT 0 COMMENT '启用状态',
   `process_remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '备注',
-  `create_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `modify_date` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `create_date` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `modify_date` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   PRIMARY KEY (`process_id`) USING BTREE,
   INDEX `分类编码`(`pro_cata_id`) USING BTREE,
   CONSTRAINT `分类编码` FOREIGN KEY (`pro_cata_id`) REFERENCES `sys_pro_cata` (`pro_cata_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -96,11 +96,16 @@ CREATE TABLE `sys_pro_cata`  (
   `pro_cata_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '工序分类名称',
   `pro_cata_status` int(1) NOT NULL DEFAULT 0 COMMENT '工序分类状态',
   `pro_cata_remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '工序分类备注',
-  `create_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `modify_date` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `create_date` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `modify_date` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   PRIMARY KEY (`pro_cata_id`) USING BTREE,
   INDEX `pro_cata_code`(`pro_cata_code`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '工序分类' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_pro_cata
+-- ----------------------------
+INSERT INTO `sys_pro_cata` VALUES (1, 'FLBM10-0001-01', '袖口整理', 0, '袖口整理', '2020-04-23 14:03:51', '2020-04-23 14:03:46');
 
 -- ----------------------------
 -- Table structure for sys_user

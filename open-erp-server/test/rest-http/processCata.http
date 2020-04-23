@@ -26,10 +26,10 @@ POST http://{{host}}/{{module}}/ HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "areaCode": "minhang",
-    "parentAreaCode": "shanghai",
-    "areaName": "闵行",
-    "areaStatus": 0
+    "cataCode": "FLBM10-0001-01",
+    "cataName": "袖口整理",
+    "cataStatus": 0,
+    "cataRemark": "袖口整理"
 }
 
 ### 修改
@@ -38,10 +38,10 @@ PUT http://{{host}}/{{module}}/2 HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "areaCode": "minhang",
-    "parentAreaCode": "shanghai",
-    "areaName": "闵行",
-    "areaStatus": 0
+    "cataCode": "FLBM10-0001-01",
+    "cataName": "袖口整理",
+    "cataStatus": 0,
+    "cataRemark": "袖口整理"
 }
 
 
