@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
+const config = require('../config')
 
-const sequelize = new Sequelize("openerp", "root", "admin", {
-  host: "localhost",
+const sequelize = new Sequelize("openerp", config.user, config.password, {
+  host: config.host,
   dialect: "mysql",
   pool: {
     max: 5,
