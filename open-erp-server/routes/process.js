@@ -1,4 +1,6 @@
-var Process = require('../db/Process');
-const getNewFactory = require('../utils/restFulFactory.js')
+var Process = require("../db/Process");
+const getNewFactory = require("../utils/restFulFactory.js");
 
-module.exports = getNewFactory(Process);
+const router = getNewFactory(Process);
+
+module.exports = router;
