@@ -1,5 +1,5 @@
 var Warehouse = require("../db/Warehouse");
-const getNewFactory = require("../utils/restfulFactory.js");
+var getNewFactory = require("./restfulFactory.js");
 
 const router = getNewFactory(Warehouse);
 

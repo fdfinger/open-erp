@@ -1,5 +1,5 @@
 var ProcessCata = require("../db/ProcessCata");
-const getNewFactory = require("../utils/restFulFactory.js");
+var getNewFactory = require("./restfulFactory.js");
 
 const router = getNewFactory(ProcessCata);
 
