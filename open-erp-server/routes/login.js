@@ -19,7 +19,6 @@ router.post("/", function (req, res, next) {
   const query = req.body;
   if (query) {
     User.findOne({ where: { username: query.username }, attributes }).then((result) => {
-      console.log(result)
       res.json({ data: result });
     });
   } else {

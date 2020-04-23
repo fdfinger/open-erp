@@ -34,7 +34,6 @@ const initState = {
 };
 
 export const processCataReducer = (state = initState, action) => {
-  console.log(action)
   switch (action.type) {
     case PROCESS_CATA_SEARCH_FROM_CHANGE:
       return { ...state, queryForm: { ...initQueryForm, ...action.value } };

@@ -17,7 +17,6 @@ router.get("/", function (req, res, next) {
   const parsePage = parseInt(page)
   const parseSize = parseInt(pageSize)
   const defaultPagination = { offset: parsePage ? (parsePage - 1) * parseSize : undefined, limit: parsePage ? parseSize : undefined }
-  console.log(defaultPagination)
   Area.findAndCountAll({ ...defaultPagination,  where: query, attributes })
     .then((result) => {
       res.json({

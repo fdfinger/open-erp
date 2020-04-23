@@ -23,7 +23,6 @@ export function* defSaga() {
     const res = yield call(api.user.list, "/users/", {
       ...user,
     });
-    console.log("takeLatest", res);
   });
 
   yield throttle(5000, "throttle", function* () {
@@ -31,7 +30,6 @@ export function* defSaga() {
     const res = yield call(api.user.list, "/users/", {
       ...user,
     });
-    console.log("throttle", res);
   });
 
   /** take 阻塞 */
@@ -40,6 +38,5 @@ export function* defSaga() {
   //   const res = yield call(api.user.list, "/users/", {
   //     ...user,
   //   });
-  //   console.log("take", res);
   // });
 }

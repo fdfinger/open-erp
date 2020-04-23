@@ -24,7 +24,6 @@ export default function* areaSaga() {
           value: res.data,
         });
       } else {
-        console.log(res);
       }
     } catch (error) {}
   });
