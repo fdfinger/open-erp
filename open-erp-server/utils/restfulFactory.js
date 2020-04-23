@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 function getNewFactory(tableModel, attributes) {
-  if ('findAndCountAll' in tableModel) {
+  if ("findAndCountAll" in tableModel) {
     router.get("/", function (req, res, next) {
       const { page, pageSize, ...query } = req.query;
       const parsePage = parseInt(page);
@@ -11,11 +11,12 @@ function getNewFactory(tableModel, attributes) {
         offset: parsePage ? (parsePage - 1) * parseSize : undefined,
         limit: parsePage ? parseSize : undefined,
       };
-      tableModel.findAndCountAll({
-        ...defaultPagination,
-        where: query,
-        attributes: attributes,
-      })
+      tableModel
+        .findAndCountAll({
+          ...defaultPagination,
+          where: query,
+          attributes: attributes,
+        })
         .then((result) => {
           res.json({
             data: result,
@@ -29,7 +30,8 @@ function getNewFactory(tableModel, attributes) {
     router.get("/:id", function (req, res, next) {
       const id = req.params.id;
       if (id) {
-        tableModel.findOne({ where: { id } })
+        tableModel
+          .findOne({ where: { id } })
           .then((result) => {
             res.json({
               statusCode: 200,
@@ -48,7 +50,8 @@ function getNewFactory(tableModel, attributes) {
     router.post("/", function (req, res, next) {
       const query = req.body;
       if (query) {
-        tableModel.create(query)
+        tableModel
+          .create(query)
           .then((result) => {
             res.json({ result });
           })
@@ -65,9 +68,10 @@ function getNewFactory(tableModel, attributes) {
       const params = req.body;
       const newParams = Object.assign({}, { id: Number(id) }, params);
       if (id) {
-        tableModel.update(newParams, {
-          where: { id },
-        })
+        tableModel
+          .update(newParams, {
+            where: { id },
+          })
           .then(() => {
             res.json({
               statusCode: 200,
@@ -113,10 +117,10 @@ function getNewFactory(tableModel, attributes) {
       }
     });
 
-    return router
+    return router;
   } else {
-    throw new Error('找不到数据库模型!')
+    throw new Error("找不到数据库模型!");
   }
 }
 
-module.exports = getNewFactory
+module.exports = getNewFactory;
