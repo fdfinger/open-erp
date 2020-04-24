@@ -8,10 +8,10 @@ const Process = seq.define(
       primaryKey: true,
       field: "process_id",
     },
-    CataId: {
+    cataId: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      defaultValue: '',
+      defaultValue: 1,
       field: "pro_cata_id",
     },
     proCode: {
@@ -29,13 +29,13 @@ const Process = seq.define(
     isValuation: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      defaultValue: '',
+      defaultValue: 1,
       field: "is_valuation",
     },
     isOutSourcing: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      defaultValue: '',
+      defaultValue: 0,
       field: "is_outsourcing",
     },
     proName: {

@@ -20,14 +20,14 @@ export function* defSaga() {
 
   yield takeLatest("takeLatest", function* () {
     const user = yield select((state) => state.user);
-    const res = yield call(api.user.list, "/users/", {
+    yield call(api.user.list, "/users/", {
       ...user,
     });
   });
 
   yield throttle(5000, "throttle", function* () {
     const user = yield select((state) => state.user);
-    const res = yield call(api.user.list, "/users/", {
+    yield call(api.user.list, "/users/", {
       ...user,
     });
   });

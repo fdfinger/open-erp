@@ -3,8 +3,16 @@ import { loginSaga } from "./loginSaga";
 import { defSaga } from "./defSaga";
 import areaSaga from "./areaSaga";
 import userSaga from "./userSaga";
-import processCataSaga from './processCataSaga'
+import processCataSaga from "./processCataSaga";
+import processSaga from "./processSaga";
 
 export function* allSaga() {
-  yield all([loginSaga(), defSaga(), areaSaga(), userSaga(), processCataSaga()]);
+  yield all([
+    loginSaga(),
+    defSaga(),
+    areaSaga(),
+    userSaga(),
+    processCataSaga(),
+    processSaga(),
+  ]);
 }

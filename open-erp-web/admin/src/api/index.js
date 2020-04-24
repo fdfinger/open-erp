@@ -6,5 +6,6 @@ export default {
   warehouse: BaseApi('warehouse'),
   user: BaseApi('users'),
   processCata: BaseApi('processCata'),
+  process: BaseApi('process'),
   login: login
 }

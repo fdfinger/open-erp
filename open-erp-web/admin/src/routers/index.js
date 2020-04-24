@@ -50,6 +50,12 @@ export const routers = [
     component: React.lazy(() => import("../pages/ProcessCata"))
   },
   {
+    path: '/admin/process',
+    title: '工序管理',
+    isShow: true,
+    component: React.lazy(() => import("../pages/Process"))
+  },
+  {
     path: '/admin/setting',
     title: '个人设置',
     isShow: true,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Layout, Menu, Row, Col } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { withRouter, Link } from 'react-router-dom'
+import { Layout, Menu, Row, Col, Dropdown, Badge, Avatar } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import { withRouter, Link } from "react-router-dom";
 
 import { routers } from "../../routers";
 
@@ -9,35 +9,25 @@ const { Header, Content, Sider } = Layout;
 
 const showRouters = routers.filter((item) => item.isShow === true);
 
-const headerIconStyle = {
-  fontSize: "16px",
-  color: "#fff",
-};
-
 const HeaderMenu = () => (
-  <>
-    <Link to="/admin/setting">
-      <UserOutlined style={headerIconStyle} />
-      用户
-    </Link>
-    <Link to="/admin/dashboard">
-      <UserOutlined style={headerIconStyle} />
-      系统首页
-    </Link>
-    <Link to="/admin/message">
-      <UserOutlined style={headerIconStyle} />
-      消息
-    </Link>
-    <Link to="/login">
-      <UserOutlined style={headerIconStyle} />
-      退出
-    </Link>
-  </>
+  <Menu>
+    <Menu.Item>
+      <Link to="/admin/setting">设置</Link>
+    </Menu.Item>
+    <Menu.Item>
+      <Badge dot>
+        <Link to="/admin/message">消息</Link>
+      </Badge>
+    </Menu.Item>
+    <Menu.Item>
+      <Link to="/login">退出</Link>
+    </Menu.Item>
+  </Menu>
 );
 class FrameOut extends Component {
   handleMenuClick = ({ key }) => {
-    this.props.history.push(key)
-  }
+    this.props.history.push(key);
+  };
   render() {
     return (
       <Layout style={{ height: "100vh" }}>
@@ -46,8 +36,15 @@ class FrameOut extends Component {
             <Col span={8}>
               <h1 style={{ color: "#fff" }}>数字化工厂ERP管理系统</h1>
             </Col>
-            <Col span={11} offset={5}>
-              <HeaderMenu />
+            <Col span={4} offset={12}>
+              <Dropdown overlay={HeaderMenu}>
+                <Badge count={5}>
+                  <span className="ant-dropdown-link">
+                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    欢迎您，XXX <DownOutlined />
+                  </span>
+                </Badge>
+              </Dropdown>
             </Col>
           </Row>
         </Header>

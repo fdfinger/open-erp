@@ -26,22 +26,30 @@ POST http://{{host}}/{{module}}/ HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "areaCode": "minhang",
-    "parentAreaCode": "shanghai",
-    "areaName": "闵行",
-    "areaStatus": 0
+    "cataId": 1,
+    "proCode": "SJBM201801",
+    "parentProCode": "闵行",
+    "isValuation": 1,
+    "isOutSourcing": 1,
+    "proName": "男装袖口整理",
+    "proStatus": 0,
+    "proRemark": "无"
 }
 
 ### 修改
 
-PUT http://{{host}}/{{module}}/2 HTTP/1.1
+PUT http://{{host}}/{{module}}/1 HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "areaCode": "minhang",
-    "parentAreaCode": "shanghai",
-    "areaName": "闵行",
-    "areaStatus": 0
+    "cataId": 1,
+    "proCode": "SJBM201801",
+    "parentProCode": "",
+    "isValuation": 1,
+    "isOutSourcing": 1,
+    "proName": "男装袖口整理",
+    "proStatus": 0,
+    "proRemark": "无"
 }
 
 
