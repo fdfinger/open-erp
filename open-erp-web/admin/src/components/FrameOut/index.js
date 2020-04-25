@@ -54,7 +54,7 @@ class FrameOut extends Component {
               mode="inline"
               onClick={this.handleMenuClick.bind(this)}
               selectedKeys={[this.props.history.location.pathname]}
-              openKeys={[openSubkeys && (`/${openSubkeys}`)]}
+              defaultOpenKeys={[openSubkeys && (`/${openSubkeys}`)]}
               style={{ height: "100%", borderRight: 0 }}
             >
               {routers.map((item) => {
