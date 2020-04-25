@@ -1,24 +1,53 @@
-import React, { Component } from 'react';
-import { routers } from './routers';
-import { Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import { HashRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import FrameOut from "./components/FrameOut";
+import Loading from "./components/Loading";
+import { commonRoutes, routers } from "./routers";
 
-import FrameOut from './components/FrameOut'
 
-export default class App extends Component {
-  componentDidMount() {}
-  render () {
-    return (
-      <FrameOut>
-        <Switch>
-          {routers.map(route => {
-            // TODO 做授权
-            return <route.component key={route.path} exact {...route} />
+const ChilRoute = ({ route }) => {
+  return (
+    <FrameOut>
+      <Switch>
+        {route.childrens &&
+          route.childrens.map((child) => {
+            return <child.component key={child.path} {...child} />;
           })}
-          <Redirect exact from="/admin" to="/admin/dashboard"/>
-          <Redirect to="/404" />
-        </Switch>
-      </FrameOut>
-    )
-  }
-}
+        <route.component {...route} />
+        <Redirect to="/dashboard" />
+      </Switch>
+    </FrameOut>
+  );
+};
 
+export default function App() {
+  return (
+    <Router>
+      <React.Suspense fallback={Loading}>
+        <Switch>
+          {routers.map((route) => {
+            return (
+              <Route
+                key={route.path}
+                path={route.path}
+                render={(routeProps) => {
+                  return <ChilRoute route={route} {...routeProps} />;
+                }}
+              />
+            );
+          })}
+          {commonRoutes.map((mainRoute) => {
+            return (
+              <Route
+                key={mainRoute.path}
+                path={mainRoute.path}
+                {...mainRoute}
+              />
+            );
+          })}
+          <Redirect to="/dashboard" />
+        </Switch>
+      </React.Suspense>
+    </Router>
+  );
+}

@@ -6,21 +6,20 @@ import { withRouter, Link } from "react-router-dom";
 import { routers } from "../../routers";
 
 const { Header, Content, Sider } = Layout;
-
-const showRouters = routers.filter((item) => item.isShow === true);
+const { SubMenu } = Menu;
 
 const HeaderMenu = () => (
   <Menu>
     <Menu.Item>
-      <Link to="/admin/setting">设置</Link>
+      <Link to="/system/setting">设置</Link>
     </Menu.Item>
     <Menu.Item>
       <Badge dot>
-        <Link to="/admin/message">消息</Link>
+        <Link to="/system/message">消息</Link>
       </Badge>
     </Menu.Item>
     <Menu.Item>
-      <Link to="/login">退出</Link>
+      <Link to="/system/login">退出</Link>
     </Menu.Item>
   </Menu>
 );
@@ -29,6 +28,7 @@ class FrameOut extends Component {
     this.props.history.push(key);
   };
   render() {
+    const openSubkeys = (this.props.history.location.pathname && this.props.history.location.pathname.split('/')[1]) || undefined
     return (
       <Layout style={{ height: "100vh" }}>
         <Header className="header" style={{ color: "#fff" }}>
@@ -54,11 +54,21 @@ class FrameOut extends Component {
               mode="inline"
               onClick={this.handleMenuClick.bind(this)}
               selectedKeys={[this.props.history.location.pathname]}
+              openKeys={[openSubkeys && (`/${openSubkeys}`)]}
               style={{ height: "100%", borderRight: 0 }}
             >
-              {showRouters.map((item) => (
-                <Menu.Item key={item.path}>{item.title}</Menu.Item>
-              ))}
+              {routers.map((item) => {
+                if ("childrens" in item) {
+                  return (
+                    <SubMenu key={item.path} title={<span>{item.title}</span>}>
+                      {item.childrens.map((child) => (
+                        <Menu.Item key={child.path}>{child.title}</Menu.Item>
+                      ))}
+                    </SubMenu>
+                  );
+                }
+                return <Menu.Item key={item.path}>{item.title}</Menu.Item>;
+              })}
             </Menu>
           </Sider>
           <Layout style={{ padding: "16px" }}>

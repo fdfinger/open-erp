@@ -22,7 +22,7 @@ const DepartmentForm = (props) => {
     function () {
       getDataById(props.id).then(function (res) {
         setFormData(res.data && res.data[0]);
-        departmentFormRef.current.resetFields();
+        departmentFormRef.current && departmentFormRef.current.resetFields();
         if (res.data && res.data.length) {
           setHasInertBtn(true)
         }
