@@ -19,7 +19,7 @@ const HeaderMenu = () => (
       </Badge>
     </Menu.Item>
     <Menu.Item>
-      <Link to="/system/login">退出</Link>
+      <Link to="/login">退出</Link>
     </Menu.Item>
   </Menu>
 );
