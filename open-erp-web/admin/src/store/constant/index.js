@@ -1,5 +1,0 @@
-export const actions = {
-  LOGIN_SUBMIT: 'LOGIN_SUBMIT',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_ERROR: 'LOGIN_ERROR',
-}

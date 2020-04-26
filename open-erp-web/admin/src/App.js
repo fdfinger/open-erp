@@ -6,7 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import FrameOut from "./components/FrameOut";
-import Loading from "./components/Loading";
+// import Loading from "./components/Loading";
 import { commonRoutes, routers } from "./routers";
 
 const ChilRoute = ({ route }) => {
@@ -27,25 +27,23 @@ const ChilRoute = ({ route }) => {
 export default function App() {
   return (
     <Router>
-      <React.Suspense fallback={Loading}>
-        <Switch>
-          {routers.map((route) => {
-            return (
-              <Route
-                key={route.path}
-                path={route.path}
-                render={(routeProps) => {
-                  return <ChilRoute route={route} {...routeProps} />;
-                }}
-              />
-            );
-          })}
-          {commonRoutes.map((mainRoute) => (
-            <mainRoute.component key={mainRoute.path} path={mainRoute.path} {...mainRoute} />
-          ))}
-          <Redirect to="/dashboard" />
-        </Switch>
-      </React.Suspense>
+      <Switch>
+        {routers.map((route) => {
+          return (
+            <Route
+              key={route.path}
+              path={route.path}
+              render={(routeProps) => {
+                return <ChilRoute route={route} {...routeProps} />;
+              }}
+            />
+          );
+        })}
+        {commonRoutes.map((mainRoute) => (
+          <mainRoute.component key={mainRoute.path} path={mainRoute.path} {...mainRoute} />
+        ))}
+        <Redirect to="/dashboard" />
+      </Switch>
     </Router>
   );
 }
