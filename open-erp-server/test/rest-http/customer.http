@@ -1,0 +1,66 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = customer
+
+## 查询所有
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### 查询ID
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### 错误查询ID
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}
+
+
+### 新增
+
+POST http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "code": "18-1000-001",
+    "name": "叶子服饰",
+    "type": 0,
+    "areaId": 1,
+    "status": 1,
+    "socialCode": "310111111111111",
+    "contact": "罗健",
+    "contactAddress": "深圳福田区",
+    "contactTelphone": "0755-12345678",
+    "contactEmail": "123@qq.com",
+    "contactFax": "0575-12345678",
+    "settlementBank": "中国建设银行股份有限公司",
+    "settlementAccount": "6116 6116 6166 123",
+    "settlementName": "浙江永康岘峰厂",
+    "remark": "客户信息备注客户信息备注客户信息备注"
+}
+
+### 修改
+
+PUT http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "cataId": 1,
+    "proCode": "SJBM201801",
+    "parentProCode": "",
+    "isValuation": 1,
+    "isOutSourcing": 1,
+    "proName": "男装袖口整理",
+    "proStatus": 0,
+    "proRemark": "无"
+}
+
+
+### 删除
+
+DELETE http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}

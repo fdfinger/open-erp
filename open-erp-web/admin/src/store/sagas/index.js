@@ -5,6 +5,7 @@ import areaSaga from "./areaSaga";
 import userSaga from "./userSaga";
 import processCataSaga from "./processCataSaga";
 import processSaga from "./processSaga";
+import customerSaga from './customerSaga'
 
 export function* allSaga() {
   yield all([
@@ -14,5 +15,6 @@ export function* allSaga() {
     userSaga(),
     processCataSaga(),
     processSaga(),
+    customerSaga()
   ]);
 }

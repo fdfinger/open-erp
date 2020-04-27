@@ -7,5 +7,6 @@ export default {
   user: BaseApi('users'),
   processCata: BaseApi('processCata'),
   process: BaseApi('process'),
+  customer: BaseApi('customer'),
   login: login
 }

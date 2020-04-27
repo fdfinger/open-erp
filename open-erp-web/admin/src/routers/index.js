@@ -9,6 +9,7 @@ import Warehouse from '../pages/Warehouse'
 import ProcessCata from '../pages/ProcessCata'
 import Process from '../pages/Process'
 import Setting from '../pages/Setting'
+import Customer from '../pages/Customer'
 
 export const Parent = ({ children }) => {
   return (
@@ -132,6 +133,11 @@ export const routers = [
         path: '/system/process',
         title: '工序管理',
         component: Process
+      },
+      {
+        path: '/system/customer',
+        title: '客户信息',
+        component: Customer
       },
       {
         path: '/system/setting',
