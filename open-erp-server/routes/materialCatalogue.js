@@ -3,4 +3,4 @@ const getNewFactory = require("./restfulFactory.js");
 const express = require("express");
 const router = express.Router();
 
-module.exports = getNewFactory(router,MaterialCatalogue);
+module.exports = getNewFactory(router, MaterialCatalogue);

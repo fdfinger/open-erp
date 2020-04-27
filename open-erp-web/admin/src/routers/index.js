@@ -10,6 +10,7 @@ import ProcessCata from '../pages/ProcessCata'
 import Process from '../pages/Process'
 import Setting from '../pages/Setting'
 import Customer from '../pages/Customer'
+import MaterialCata from '../pages/MaterialCata'
 
 export const Parent = ({ children }) => {
   return (
@@ -138,6 +139,11 @@ export const routers = [
         path: '/system/customer',
         title: '客户信息',
         component: Customer
+      },
+      {
+        path: '/system/materialCata',
+        title: '物料分类',
+        component: MaterialCata
       },
       {
         path: '/system/setting',
