@@ -1,0 +1,65 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = material
+
+## 查询所有
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### 查询ID
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### 错误查询ID
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}
+
+
+### 新增
+
+POST http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "cataId": 1,
+    "warehouseId": 1,
+    "code": "XMBM20180001",
+    "name": "办公工具设备必需品",
+    "specificationModel": "bhm25*2.5*0.1",
+    "specificationUnit": "台",
+    "chargeUnit": "台/元",
+    "conversion": "XMBM20180001",
+    "material": "塑料",
+    "color": "白色",
+    "procurementPrice": "90.00",
+    "procurementRate": "0.16",
+    "safetyStock": 10,
+    "stockUp": 20,
+    "stockDown": 5,
+    "status": 1
+}
+
+### 修改
+
+PUT http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "parentId": 0,
+    "code": "FLBM10-0001",
+    "name": "办公工具设备",
+    "suject": "办公用品",
+    "status": 1,
+    "remark": "笔"
+}
+
+
+### 删除
+
+DELETE http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}

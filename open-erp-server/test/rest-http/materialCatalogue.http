@@ -1,0 +1,55 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = materialCatalogue
+
+## 查询所有
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### 查询ID
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### 错误查询ID
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}
+
+
+### 新增
+
+POST http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "parentId": 0,
+    "code": "FLBM10-0001",
+    "name": "办公工具设备",
+    "suject": "办公用品",
+    "status": 1,
+    "remark": "笔"
+}
+
+### 修改
+
+PUT http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "parentId": 0,
+    "code": "FLBM10-0001",
+    "name": "办公工具设备",
+    "suject": "办公用品",
+    "status": 1,
+    "remark": "笔"
+}
+
+
+### 删除
+
+DELETE http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
