@@ -30,7 +30,7 @@ const ModelContent = (props) => {
       <Row>
         <Col span={8}>
           <Form.Item
-            name="warehouse_code"
+            name="warehouseCode"
             label="仓库编码"
             rules={[{ required: true, message: "请输入地区编号" }]}
           >
@@ -39,7 +39,7 @@ const ModelContent = (props) => {
         </Col>
         <Col span={8}>
           <Form.Item
-            name="sys_dept_id"
+            name="sysDeptId"
             label="所属部门"
             rules={[{ required: true, message: "请选择所属部门" }]}
           >
@@ -47,7 +47,7 @@ const ModelContent = (props) => {
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item name="warehouse_status" label="启用状态">
+          <Form.Item name="warehouseStatus" label="启用状态">
             <Select>
               <Select.Option value={1}>启用</Select.Option>
               <Select.Option value={0}>停用</Select.Option>
@@ -57,13 +57,13 @@ const ModelContent = (props) => {
       </Row>
       <Form.Item
         {...formItemLayout}
-        name="warehouse_name"
+        name="warehouseName"
         label="地区名称"
         rules={[{ required: true, message: "请输入地区名称" }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item {...formItemLayout} name="warehouse_remark" label="备注">
+      <Form.Item {...formItemLayout} name="warehouseRemark" label="备注">
         <Input.TextArea></Input.TextArea>
       </Form.Item>
       <Form.Item>

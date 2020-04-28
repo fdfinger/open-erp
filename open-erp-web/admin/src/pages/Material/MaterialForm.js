@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Form, Input, Button, Modal, Select, Row, Col } from "antd";
-import MaterialCataSelect from '../../components/MaterialCataSelect'
+import MaterialCataSelect from "../../components/MaterialCataSelect";
+import WarehouseSelect from "../../components/WarehouseSelect";
 
 const ModelContent = (props) => {
   const form = useRef();
@@ -22,7 +23,7 @@ const ModelContent = (props) => {
             label="分类编码"
             rules={[{ required: true, message: "请选择分类编码" }]}
           >
-            <MaterialCataSelect />
+            <MaterialCataSelect placeholder="请选择分类编码" />
           </Form.Item>
         </Col>
         <Col span={8}>
@@ -31,7 +32,7 @@ const ModelContent = (props) => {
             label="仓库编码"
             rules={[{ required: true, message: "请选择仓库编码" }]}
           >
-            <Input placeholder="CKBM0001" />
+            <WarehouseSelect placeholder="CKBM0001" />
           </Form.Item>
         </Col>
         <Col span={8}>

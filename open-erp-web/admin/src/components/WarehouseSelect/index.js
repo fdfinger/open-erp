@@ -16,7 +16,7 @@ function WarehouseSelect(props) {
       {selectData.map((selectItem) => {
         return (
           <Option key={selectItem.id} value={selectItem.id}>
-            {selectItem.code}
+            {selectItem.warehouseCode}
           </Option>
         );
       })}

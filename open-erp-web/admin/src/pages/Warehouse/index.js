@@ -1,119 +1,96 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import WarehouseSearch from "./WarehouseSearch";
 import WarehouseTable from "./WarehouseTable";
-import Api from "../../api";
-import { Card, Button } from "antd";
+import { Layout, Card, Button } from "antd";
 import WarehouseForm from "./WarehouseForm";
+import { connect } from "react-redux";
+import {
+  onSearch,
+  searchFormChange,
+  closeFormModel,
+  openEditFormModal,
+  openAddFormModal,
+  editFormFinish,
+  onTableDelete,
+} from "../../store/actions/warehouse";
 
-const initFormValues = {
-  area_code: "",
-  parent_area_code: "",
-  area_status: 0,
-};
-
-export default class Warehouse extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSource: [],
-      title: "新增",
-      hasEdit: false,
-      hasEditLoading: false,
-      editInitValues: {},
-      searchForm: initFormValues,
-    };
-  }
-
-  getList(params = {}) {
-    Api.warehouse.list(params).then((res) => {
-      this.setState({
-        dataSource: (res && res.data && res.data.rows) || [],
-      });
-    });
-  }
-
-  addWarehouse = (params) => {
-    Api.warehouse.insert(params).finally(() => this.getList());
-  };
-
-  openAddFormModal() {
-    this.setState({
-      title: "添加仓库",
-      hasEdit: true,
-      editInitValues: initFormValues,
-    });
-  }
-
-  openEditFormModal(params = {}) {
-    this.setState({
-      title: "编辑",
-      hasEdit: true,
-      editInitValues: params,
-    });
-  }
-
-  closeFormModel() {
-    this.setState({
-      hasEdit: false,
-    });
-  }
-
-  EditFormFinish(r) {
-    this.closeFormModel();
-    console.log(r)
-    // this.addWarehouse(r);
-  }
-
-  componentDidMount() {
-    this.getList();
-  }
-
-  onSearchChange(v) {
-    this.setState({
-      searchForm: v,
-    });
-  }
-
-  handleSearch = () => {
-    this.getList(this.state.searchForm);
-  };
-
-  onTableDelete = (record) => {
-    console.log(record);
-  };
-
-  render() {
-    return (
-      <div>
-        <WarehouseSearch
-          onChange={this.onSearchChange.bind(this)}
-          onSearch={this.handleSearch.bind(this)}
+function Warehouse({
+  title,
+  editInitValues,
+  hasEdit,
+  hasEditLoading,
+  dataSource,
+  count,
+  queryForm,
+  onSearch,
+  isLoading,
+  searchFormChange,
+  closeFormModel,
+  openEditFormModal,
+  openAddFormModal,
+  editFormFinish,
+  onTableDelete,
+}) {
+  useEffect(() => {
+    onSearch();
+  }, [onSearch]);
+  return (
+    <Layout>
+      <WarehouseSearch
+        onSearch={() => onSearch({ page: 1 })}
+        onChange={searchFormChange}
+      ></WarehouseSearch>
+      <Card
+        title={"数据列表"}
+        style={{ marginTop: 16 }}
+        bodyStyle={{ padding: 0 }}
+        extra={
+          <Button type="dashed" onClick={openAddFormModal}>
+            新增
+          </Button>
+        }
+      >
+        <WarehouseTable
+          dataSource={dataSource}
+          editClick={openEditFormModal}
+          deleteClick={(record) => {
+            onTableDelete(record.id);
+          }}
+          loading={isLoading}
+          pagination={{
+            position: ["bottomLeft"],
+            current: queryForm.page,
+            defaultPageSize: queryForm.pageSize,
+            pageSize: queryForm.pageSize,
+            total: count,
+            showTotal: (total) => `${total}条记录`,
+            onChange: (page, pageSize) => {
+              searchFormChange({ page, pageSize });
+              onSearch();
+            },
+          }}
         />
-        <Card
-          title="数据列表"
-          bodyStyle={{ padding: 0 }}
-          style={{ marginTop: 20 }}
-          extra={
-            <Button type="primary" onClick={this.openAddFormModal.bind(this)}>
-              新增
-            </Button>
-          }
-        >
-          <WarehouseTable
-            dataSource={this.state.dataSource}
-            editClick={this.openEditFormModal.bind(this)}
-            deleteClick={this.onTableDelete.bind(this)}
-          />
-        </Card>
-        <WarehouseForm
-          title={this.state.title}
-          editInitValues={this.state.editInitValues}
-          hasEdit={this.state.hasEdit}
-          hasEditLoading={this.state.hasEditLoading}
-          onFinish={this.EditFormFinish.bind(this)}
-          onClose={this.closeFormModel.bind(this)}
-        />
-      </div>
-    );
-  }
+      </Card>
+      <WarehouseForm
+        title={title}
+        editInitValues={editInitValues}
+        hasEdit={hasEdit}
+        hasEditLoading={hasEditLoading}
+        onFinish={editFormFinish}
+        onClose={closeFormModel}
+      />
+    </Layout>
+  );
 }
+
+const mapStateToProps = (state) => state.warehouse;
+
+export default connect(mapStateToProps, {
+  onSearch,
+  searchFormChange,
+  closeFormModel,
+  openEditFormModal,
+  openAddFormModal,
+  editFormFinish,
+  onTableDelete,
+})(Warehouse);

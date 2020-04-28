@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Button, Popconfirm } from "antd";
 
-function WarehouseTable(props) {
+function WarehouseTable({ editClick, deleteClick, dataSource, pagination, loading }) {
   const columns = [
     {
       title: "序号",
@@ -22,12 +22,12 @@ function WarehouseTable(props) {
       dataIndex: "actions",
       render: (text, record) => (
         <>
-          <Button type="link" onClick={EditClick.bind(this, record)}>
+          <Button type="link" onClick={() => editClick(record)}>
             编辑
           </Button>
           <Popconfirm
-            title={`确认删除【${record.areaName}】吗?`}
-            onConfirm={DeleteClick.bind(this, record)}
+            title={`确认删除【${record.warehouseName}】吗?`}
+            onConfirm={() => deleteClick(record.id)}
           >
             <Button type="link">删除</Button>
           </Popconfirm>
@@ -35,21 +35,14 @@ function WarehouseTable(props) {
       ),
     },
   ];
-
-  const EditClick = (params) => {
-    props.editClick(params);
-  };
-
-  const DeleteClick = (params) => {
-    props.deleteClick(params);
-  };
-
   return (
     <Table
       bordered
-      dataSource={props.dataSource}
+      loading={loading}
+      dataSource={dataSource}
       columns={columns}
       rowKey={(record) => record.id}
+      pagination={pagination}
     />
   );
 }

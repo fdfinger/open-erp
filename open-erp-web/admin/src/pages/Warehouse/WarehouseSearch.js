@@ -2,23 +2,20 @@ import React from "react";
 import PageSearch from "../../components/PageSearch";
 import { Form, Input, Button } from "antd";
 
-const WarehouseSearch = function (props) {
+const WarehouseSearch = function ({ onSearch, onChange }) {
   const [form] = Form.useForm();
-  const handleSearch = () => {
-    props.onSearch()
-  };
 
   const onSearchRest = () => {
     form.resetFields();
-    props.onChange({})
+    onChange({});
   };
 
   const onValuesChange = (n, vs) => {
-    props.onChange(vs)
-  }
+    onChange(vs);
+  };
 
   return (
-    <PageSearch onSearch={handleSearch.bind(this)}>
+    <PageSearch onSearch={onSearch}>
       <Form form={form} layout="inline" onValuesChange={onValuesChange}>
         <Form.Item name="warehouse_name" label="仓库名称">
           <Input />

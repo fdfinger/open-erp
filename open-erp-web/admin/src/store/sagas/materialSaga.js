@@ -8,11 +8,12 @@ import {
   MATERIAL_TABLE_ON_DELETE,
   MATERIAL_GET_SELECT_DATA,
   MATERIAL_UPDATE_SELECT_DATA,
-  // MATERIAL_OPEN_FORM_MODEL_TO_ADD,
-  // MATERIAL_OPEN_FORM_MODEL_TO_EDIT
+  MATERIAL_OPEN_FORM_MODEL_TO_ADD,
+  MATERIAL_OPEN_FROM_MODEL_TO_EDIT
 } from "../constant/material";
 
 import { MATERIALCATA_GET_SELECT_DATA } from '../constant/materialCata'
+import { WAREHOUSE_GET_SELECT_DATA } from '../constant/warehouse'
 
 export default function* materialSaga() {
   // 查询 异步
@@ -61,9 +62,9 @@ export default function* materialSaga() {
   });
 
   // 打开窗口就去 获取选择框的数据 获取的是部门的数据
-  // yield takeEvery([MATERIAL_OPEN_FORM_MODEL_TO_ADD, MATERIAL_OPEN_FORM_MODEL_TO_EDIT], function* (){
-  //   yield put({ type: USER_GET_SELECT_DATA })
-  // })
+  yield takeEvery([MATERIAL_OPEN_FORM_MODEL_TO_ADD, MATERIAL_OPEN_FROM_MODEL_TO_EDIT], function* (){
+    yield put({ type: WAREHOUSE_GET_SELECT_DATA })
+  })
 
   // 获取 选择框 的 数据
   yield takeEvery(MATERIAL_GET_SELECT_DATA, function* (){
