@@ -9,7 +9,7 @@ const { Option } = Select;
  * @param {object} props
  */
 
-function AreaSelect(props) {
+function MaterialCataSelect(props) {
   const { selectData, dispatch, ...otherProps } = props
   return (
     <Select {...otherProps}>
@@ -30,4 +30,4 @@ const mapStateToProps = function (state) {
   };
 };
 
-export default connect(mapStateToProps)(AreaSelect);
+export default connect(mapStateToProps)(MaterialCataSelect);
