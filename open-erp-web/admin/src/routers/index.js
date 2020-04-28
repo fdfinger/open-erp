@@ -1,23 +1,21 @@
 import React from "react";
-import Login from '../pages/Login'
-import NotFound from '../pages/NotFound'
-import Dashboard from '../pages/Dashboard'
-import Department from '../pages/Department'
-import Users from '../pages/Users'
-import Area from '../pages/Area'
-import Warehouse from '../pages/Warehouse'
-import ProcessCata from '../pages/ProcessCata'
-import Process from '../pages/Process'
-import Setting from '../pages/Setting'
-import Customer from '../pages/Customer'
-import MaterialCata from '../pages/MaterialCata'
+import Login from "../pages/Login";
+import NotFound from "../pages/NotFound";
+import Dashboard from "../pages/Dashboard";
+import Department from "../pages/Department";
+import Users from "../pages/Users";
+import Area from "../pages/Area";
+import Warehouse from "../pages/Warehouse";
+import ProcessCata from "../pages/ProcessCata";
+import Process from "../pages/Process";
+import Setting from "../pages/Setting";
+import Customer from "../pages/Customer";
+import MaterialCata from "../pages/MaterialCata";
+import Material from "../pages/Material";
 
 export const Parent = ({ children }) => {
-  return (
-  <div>{children}</div>
-  )
-}
-
+  return <div>{children}</div>;
+};
 
 // export const commonRoutes = [
 //   {
@@ -92,64 +90,67 @@ export const commonRoutes = [
 //   },
 // ];
 
-
 export const routers = [
   {
-    path: '/dashboard',
-    title: '数据仪表',
-    component: Dashboard
+    path: "/dashboard",
+    title: "数据仪表",
+    component: Dashboard,
   },
   {
-    path: '/system',
-    title: '系统管理',
+    path: "/system",
+    title: "系统管理",
     component: Parent,
     childrens: [
-
       {
-        path: '/system/department',
-        title: '部门管理',
-        component: Department
+        path: "/system/area",
+        title: "地区信息",
+        component: Area,
       },
       {
-        path: '/system/users',
-        title: '用户信息',
-        component: Users
+        path: "/system/customer",
+        title: "客户信息",
+        component: Customer,
       },
       {
-        path: '/system/area',
-        title: '地区管理',
-        component: Area
+        path: "/system/warehouse",
+        title: "仓库信息",
+        component: Warehouse,
       },
       {
-        path: '/system/warehouse',
-        title: '仓库管理',
-        component: Warehouse
+        path: "/system/materialCata",
+        title: "物料分类",
+        component: MaterialCata,
       },
       {
-        path: '/system/processCata',
-        title: '工序分类',
-        component: ProcessCata
+        path: "/system/material",
+        title: "物料管理",
+        component: Material,
       },
       {
-        path: '/system/process',
-        title: '工序管理',
-        component: Process
+        path: "/system/process",
+        title: "工序管理",
+        component: Process,
       },
       {
-        path: '/system/customer',
-        title: '客户信息',
-        component: Customer
+        path: "/system/users",
+        title: "用户信息",
+        component: Users,
       },
       {
-        path: '/system/materialCata',
-        title: '物料分类',
-        component: MaterialCata
+        path: "/system/processCata",
+        title: "工序分类",
+        component: ProcessCata,
       },
       {
-        path: '/system/setting',
-        title: '个人设置',
-        component: Setting
+        path: "/system/department",
+        title: "部门管理",
+        component: Department,
       },
-    ]
+      {
+        path: "/system/setting",
+        title: "个人设置",
+        component: Setting,
+      },
+    ],
   },
 ];

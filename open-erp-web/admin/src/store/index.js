@@ -11,6 +11,7 @@ import { processCataReducer } from "./reducers/processCataReducer";
 import { processReducer } from "./reducers/processReducer";
 import { customerReducer } from "./reducers/customerReducer";
 import { materialCataReducer } from "./reducers/materialCataReducer";
+import { materialReducer } from "./reducers/materialReducer";
 
 const sageMiddlerware = createSageMiddleware();
 
@@ -26,6 +27,7 @@ const store = createStore(
     process: processReducer,
     customer: customerReducer,
     materialCata: materialCataReducer,
+    material: materialReducer,
     routing: routerReducer,
   }),
   {},

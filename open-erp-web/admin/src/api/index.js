@@ -9,5 +9,6 @@ export default {
   process: BaseApi('process'),
   customer: BaseApi('customer'),
   materialCata: BaseApi('materialCatalogue'),
+  material: BaseApi('material'),
   login: login
 }
