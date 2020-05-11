@@ -9,6 +9,7 @@ import customerSaga from './customerSaga'
 import materialCataSaga from './materialCataSaga'
 import materialSaga from './materialSaga'
 import warehouseSaga from './warehouseSaga'
+import departmentSaga from './departmentSaga'
 
 export function* allSaga() {
   yield all([
@@ -21,6 +22,7 @@ export function* allSaga() {
     customerSaga(),
     materialCataSaga(),
     materialSaga(),
-    warehouseSaga()
+    warehouseSaga(),
+    departmentSaga()
   ]);
 }

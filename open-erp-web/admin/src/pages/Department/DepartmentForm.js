@@ -1,54 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Form, Input, Button } from "antd";
-import { getDataById } from "../../api/department";
-
-const initForm = {
-  id: "",
-  name: "",
-  parent_id: "",
-  level: "",
-  seq: "",
-  remark: "",
-  operator: "",
-};
 
 const DepartmentForm = (props) => {
-  const [formData, setFormData] = useState(initForm);
-  const [hasInertBtn, setHasInertBtn] = useState(false);
+  const form = useRef();
 
-  const departmentFormRef = useRef();
-
-  useEffect(
-    function () {
-      getDataById(props.id).then(function (res) {
-        setFormData(res.data && res.data[0]);
-        departmentFormRef.current && departmentFormRef.current.resetFields();
-        if (res.data && res.data.length) {
-          setHasInertBtn(true)
-        }
-      });
-    },
-    [props.id]
-  );
+  useEffect(() => {
+    form.current.resetFields();
+  }, [props.initialValues]);
 
   /** 表单提交成功 */
   const onFinish = (values) => {
-    const newFormData = Object.assign(formData, values);
-    setFormData(newFormData);
+    console.log(values);
   };
 
   /** 新增下级 */
   const addNewDepartment = () => {
-    const { parent_id, level } = formData
-    setHasInertBtn(false)
-    setFormData({ parent_id, level: Number(level) + 1 })
-  }
+    console.log('values');
+  };
 
   return (
     <div style={{ padding: 20 }}>
       <Form
-        initialValues={formData}
-        ref={departmentFormRef}
+        initialValues={props.initialValues}
+        ref={form}
         onFinish={onFinish.bind(this)}
       >
         <Form.Item name="name" label="部门名称">
@@ -66,7 +40,7 @@ const DepartmentForm = (props) => {
           </Button>
           <Button
             className="m-l-20"
-            style={{ display: hasInertBtn ? "" : "none" }}
+            style={{ display: props.initialValues.id ? "" : "none" }}
             onClick={addNewDepartment.bind(this)}
           >
             添加下级部门
