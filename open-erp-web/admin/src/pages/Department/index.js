@@ -3,13 +3,28 @@ import { Card, Layout, Row, Col } from "antd";
 import DepartmentTree from "./DepartmentTree";
 import DepartmentForm from "./DepartmentForm";
 import { connect } from "react-redux";
-import { getList, getById, setSelectId, onLoadData } from "../../store/actions/department";
+import {
+  getList,
+  getById,
+  setSelectId,
+  onLoadData,
+  onFinish,
+  addChild,
+} from "../../store/actions/department";
 
 // TODO connent store 没有写 明天需要搞一下
 
-function Department({ setSelectId, list, getList, formData, onLoadData }) {
+function Department({
+  setSelectId,
+  list,
+  getList,
+  formData,
+  onLoadData,
+  onFinish,
+  addChild,
+}) {
   useEffect(() => {
-    getList()
+    getList();
   }, [getList]);
   return (
     <Layout>
@@ -25,7 +40,11 @@ function Department({ setSelectId, list, getList, formData, onLoadData }) {
             />
           </Col>
           <Col span={18}>
-            <DepartmentForm initialValues={formData}/>
+            <DepartmentForm
+              initialValues={formData}
+              onFinish={onFinish}
+              addChild={addChild}
+            />
           </Col>
         </Row>
       </Card>
@@ -35,6 +54,11 @@ function Department({ setSelectId, list, getList, formData, onLoadData }) {
 
 const mapStateToProps = (state) => state.department;
 
-export default connect(mapStateToProps, { getList, getById, setSelectId, onLoadData })(
-  Department
-);
+export default connect(mapStateToProps, {
+  getList,
+  getById,
+  setSelectId,
+  onLoadData,
+  onFinish,
+  addChild,
+})(Department);

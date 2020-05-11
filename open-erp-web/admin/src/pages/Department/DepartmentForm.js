@@ -8,22 +8,12 @@ const DepartmentForm = (props) => {
     form.current.resetFields();
   }, [props.initialValues]);
 
-  /** 表单提交成功 */
-  const onFinish = (values) => {
-    console.log(values);
-  };
-
-  /** 新增下级 */
-  const addNewDepartment = () => {
-    console.log('values');
-  };
-
   return (
     <div style={{ padding: 20 }}>
       <Form
         initialValues={props.initialValues}
         ref={form}
-        onFinish={onFinish.bind(this)}
+        onFinish={props.onFinish}
       >
         <Form.Item name="name" label="部门名称">
           <Input />
@@ -41,7 +31,7 @@ const DepartmentForm = (props) => {
           <Button
             className="m-l-20"
             style={{ display: props.initialValues.id ? "" : "none" }}
-            onClick={addNewDepartment.bind(this)}
+            onClick={props.addChild}
           >
             添加下级部门
           </Button>

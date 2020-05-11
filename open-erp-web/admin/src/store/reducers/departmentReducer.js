@@ -2,11 +2,12 @@ import {
   DEPARTMENT_LIST_ON_CHANGE,
   DEPARTMENT_SELECTED_ID,
   DEPARTMENT_ON_LOAD_DATA,
-  DEPARTMENT_UPDATE_FORM
+  DEPARTMENT_UPDATE_FORM,
+  DEPARTMENT_EDIT_ON_FINISH,
+  DEPARTMENT_EDIT_ADD_CHILD
 } from "../constant/department";
 
 const initForm = {
-  id: "",
   name: "",
   parent_id: "",
   level: "",
@@ -32,8 +33,13 @@ export const departmentReducer = (state = initState, action) => {
       return { ...state, selectedId: action.value };
     case DEPARTMENT_UPDATE_FORM:
       return { ...state, formData: action.value };
+    case DEPARTMENT_EDIT_ON_FINISH:
+      return { ...state, formData: { ...state.formData, ...action.value } };
     case DEPARTMENT_ON_LOAD_DATA:
       return { ...state, loadData: action.value };
+    case DEPARTMENT_EDIT_ADD_CHILD:
+      const level = parseInt(state.formData.level || 0) + 1
+      return { ...state, formData: { ...initForm, level: level.toString(), parentId: state.formData.id || 1 } }
     default:
       return state;
   }

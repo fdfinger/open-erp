@@ -5,8 +5,10 @@ import {
   DEPARTMENT_LIST_ON_CHANGE,
   DEPARTMENT_ON_LOAD_DATA,
   DEPARTMENT_UPDATE_FORM,
+  DEPARTMENT_EDIT_ON_FINISH,
 } from "../constant/department";
-import { getList, getDataById } from "../../api/department";
+import { getList, getDataById, insert, update } from "../../api/department";
+import { message } from "antd";
 
 function updateTreeData(list, key, children) {
   return list.map((node) => {
@@ -45,13 +47,28 @@ export default function* departmentSaga() {
   yield takeEvery(DEPARTMENT_ON_LOAD_DATA, function* () {
     const department = yield select((state) => state.department);
     const res = yield call(getList, { parentId: department.loadData.key });
-    if (res.data && res.data.row && res.data.row.length > 0) {
+    if (res.data && res.data.rows && res.data.rows.length > 0) {
       const data = updateTreeData(
         department.list,
         department.loadData.key,
-        res.data.map((item) => ({ key: item.id, title: item.name }))
+        res.data.rows.map((item) => ({ key: item.id, title: item.name }))
       );
-      console.log(res, data);
+      yield put({
+        type: DEPARTMENT_LIST_ON_CHANGE,
+        value: data
+      })
     }
   });
+
+  /** 提交表单 */
+  yield takeEvery(DEPARTMENT_EDIT_ON_FINISH, function* () {
+    let res;
+    const department = yield select((state) => state.department);
+    if ('id' in department.formData) {
+      res = yield call(update, department.formData)
+    } else {
+      res = yield call(insert, department.formData)
+    }
+    message.success(res.message || '操作成功')
+  })
 }
