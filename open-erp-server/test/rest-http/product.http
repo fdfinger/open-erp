@@ -1,0 +1,65 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = product
+
+## 查询所有
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### 查询ID
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### 错误查询ID
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}
+
+
+### 新增
+
+POST http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "proCode": "XMBM20180001",
+    "code": "CPBM02180001",
+    "norms": "bhm25*2.5*0.1",
+    "name": "橡胶成品",
+    "valuation": "男装袖口整理",
+    "material": "男装袖口整理",
+    "valuationUnit": "根/元",
+    "colorNumber": "FBL-1",
+    "dosage": 120,
+    "status": 1,
+    "remark": "无"
+}
+
+### 修改
+
+PUT http://{{host}}/{{module}}/2 HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "proCode": "XMBM20180001",
+    "code": "CPBM02180001",
+    "norms": "bhm25*2.5*0.1",
+    "name": "橡胶成品",
+    "valuation": "男装袖口整理",
+    "material": "男装袖口整理",
+    "valuationUnit": "根/元",
+    "colorNumber": "FBL-1",
+    "dosage": 120,
+    "status": 1,
+    "remark": "无"
+}
+
+
+### 删除
+
+DELETE http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}

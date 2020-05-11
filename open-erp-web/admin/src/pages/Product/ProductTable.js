@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Table, Popconfirm } from "antd";
 
-function MaterialTable({ editClick, deleteClick, dataSource, pagination, loading }) {
+function ProductTable({ editClick, deleteClick, dataSource, pagination }) {
   const columns = [
     {
       title: "序号",
@@ -9,21 +9,21 @@ function MaterialTable({ editClick, deleteClick, dataSource, pagination, loading
       width: 70,
       render: (text, record, index) => <span>{index + 1}</span>,
     },
-    { title: "分类编码", dataIndex: "cataId", width: 120 },
-    { title: "仓库编码", dataIndex: "warehouseId", width: 120 },
-    { title: "项目编码", dataIndex: "code", width: 120 },
-    { title: "项目名称", dataIndex: "name", width: 120 },
+    { title: "项目编码", dataIndex: "proCode", width: 120 },
+    { title: "产品编码", dataIndex: "code", width: 120 },
+    { title: "物料名称", dataIndex: "name", width: 120 },
     {
       title: "启用状态",
-      dataIndex: "cataStatus",
+      dataIndex: "status",
       width: 120,
       render: (text, record) => (
-        <span>{record.cataStatus ? "启用" : "禁用"}</span>
+        <span>{record.status ? "启用" : "禁用"}</span>
       ),
     },
-    { title: "规格型号", dataIndex: "specificationModel", width: 120 },
-    { title: "采购含税单价", dataIndex: "procurementPrice", width: 120 },
-    { title: "安全库存", dataIndex: "safetyStock", width: 120 },
+    { title: "规格型号", dataIndex: "norms", width: 120 },
+    { title: "计价单位", dataIndex: "valuationUnit", width: 120 },
+    { title: "色号", dataIndex: "colorNumber", width: 120 },
+    { title: "生产用量", dataIndex: "dosage", width: 120 },
     {
       title: "操作",
       dataIndex: "actions",
@@ -47,7 +47,6 @@ function MaterialTable({ editClick, deleteClick, dataSource, pagination, loading
   return (
     <Table
       bordered
-      loading={loading}
       dataSource={dataSource}
       columns={columns}
       rowKey={(record) => record.id}
@@ -57,4 +56,4 @@ function MaterialTable({ editClick, deleteClick, dataSource, pagination, loading
   );
 }
 
-export default MaterialTable;
+export default ProductTable;

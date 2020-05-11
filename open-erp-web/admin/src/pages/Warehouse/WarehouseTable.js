@@ -27,7 +27,7 @@ function WarehouseTable({ editClick, deleteClick, dataSource, pagination, loadin
           </Button>
           <Popconfirm
             title={`确认删除【${record.warehouseName}】吗?`}
-            onConfirm={() => deleteClick(record.id)}
+            onConfirm={() => deleteClick(record)}
           >
             <Button type="link">删除</Button>
           </Popconfirm>

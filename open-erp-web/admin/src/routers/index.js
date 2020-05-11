@@ -12,6 +12,7 @@ import Setting from "../pages/Setting";
 import Customer from "../pages/Customer";
 import MaterialCata from "../pages/MaterialCata";
 import Material from "../pages/Material";
+import Product from "../pages/Product";
 
 export const Parent = ({ children }) => {
   return <div>{children}</div>;
@@ -130,6 +131,11 @@ export const routers = [
         path: "/system/process",
         title: "工序管理",
         component: Process,
+      },
+      {
+        path: "/system/product",
+        title: "产品BOM",
+        component: Product,
       },
       {
         path: "/system/users",

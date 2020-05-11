@@ -41,7 +41,7 @@ function CustomerTable({ editClick, deleteClick, dataSource, pagination }) {
           <Button type="link" onClick={() => editClick(record)}>
             修改
           </Button>
-          <Button type="link" onClick={() => deleteClick(record.id)}>
+          <Button type="link" onClick={() => deleteClick(record)}>
             删除
           </Button>
         </>

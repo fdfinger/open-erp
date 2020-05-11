@@ -10,5 +10,6 @@ export default {
   customer: BaseApi('customer'),
   materialCata: BaseApi('materialCatalogue'),
   material: BaseApi('material'),
+  product: BaseApi('product'),
   login: login
 }

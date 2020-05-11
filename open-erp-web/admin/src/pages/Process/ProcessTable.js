@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Table } from "antd";
+import { Button, Table, Popconfirm } from "antd";
 
 function ProcessTable({ editClick, deleteClick, dataSource, pagination }) {
   const columns = [
@@ -42,9 +42,12 @@ function ProcessTable({ editClick, deleteClick, dataSource, pagination }) {
           <Button type="link" onClick={() => editClick(record)}>
             修改
           </Button>
-          <Button type="link" onClick={() => deleteClick(record.id)}>
-            删除
-          </Button>
+          <Popconfirm
+            title={`确认删除【${record.proName}】吗?`}
+            onConfirm={() => deleteClick(record)}
+          >
+            <Button type="link">删除</Button>
+          </Popconfirm>
         </>
       ),
     },

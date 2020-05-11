@@ -16,6 +16,7 @@ const processRouter = require("./routes/process");
 const customerRouter = require("./routes/customer");
 const materialCatalogueRouter = require("./routes/materialCatalogue");
 const materialRouter = require("./routes/material");
+const productRouter = require("./routes/product");
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use("/process", processRouter);
 app.use("/customer", customerRouter);
 app.use("/materialCatalogue", materialCatalogueRouter);
 app.use("/material", materialRouter);
+app.use("/product", productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
