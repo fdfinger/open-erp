@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const { Option } = Select;
 
 /**
- * 地区选择框
+ * 部门选择框
  * @param {object} props
  */
 
@@ -15,8 +15,8 @@ function DepartmentSelect(props) {
     <Select {...otherProps}>
       {selectData.map((selectItem) => {
         return (
-          <Option key={selectItem.areaCode} value={selectItem.areaCode}>
-            {selectItem.areaName}
+          <Option key={selectItem.id} value={selectItem.id}>
+            {selectItem.name}
           </Option>
         );
       })}
@@ -26,7 +26,7 @@ function DepartmentSelect(props) {
 
 const mapStateToProps = function (state) {
   return {
-    selectData: state.area.selectData,
+    selectData: state.department.selectData,
   };
 };
 

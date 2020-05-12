@@ -11,5 +11,6 @@ export default {
   materialCata: BaseApi('materialCatalogue'),
   material: BaseApi('material'),
   product: BaseApi('product'),
+  device: BaseApi('device'),
   login: login
 }

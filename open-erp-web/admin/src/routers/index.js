@@ -13,6 +13,7 @@ import Customer from "../pages/Customer";
 import MaterialCata from "../pages/MaterialCata";
 import Material from "../pages/Material";
 import Product from "../pages/Product";
+import Device from "../pages/Device";
 
 export const Parent = ({ children }) => {
   return <div>{children}</div>;
@@ -96,6 +97,18 @@ export const routers = [
     path: "/dashboard",
     title: "数据仪表",
     component: Dashboard,
+  },
+  {
+    path: "/workshop",
+    title: "设备能源",
+    component: Parent,
+    childrens: [
+      {
+        path: "/workshop",
+        title: "车间设备",
+        component: Device
+      }
+    ]
   },
   {
     path: "/system",

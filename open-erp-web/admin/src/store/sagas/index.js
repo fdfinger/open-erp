@@ -11,6 +11,7 @@ import materialSaga from './materialSaga'
 import warehouseSaga from './warehouseSaga'
 import departmentSaga from './departmentSaga'
 import productSaga from './productSaga'
+import deviceSaga from './deviceSaga'
 
 export function* allSaga() {
   yield all([
@@ -25,6 +26,7 @@ export function* allSaga() {
     materialSaga(),
     warehouseSaga(),
     departmentSaga(),
-    productSaga()
+    productSaga(),
+    deviceSaga()
   ]);
 }

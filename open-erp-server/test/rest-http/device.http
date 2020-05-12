@@ -1,0 +1,59 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@module = device
+
+## 查询所有
+
+GET  http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+### 查询ID
+
+GET  http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+### 错误查询ID
+
+GET  http://{{host}}/{{module}}/abc HTTP/1.1
+content-type: {{contentType}}
+
+
+### 新增
+
+POST http://{{host}}/{{module}}/ HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "code": "SBBM2018-01-001",
+    "machineCode": "JQM1000-02",
+    "name": "袖口整理机",
+    "norms": "bhm25*25*200",
+    "unit": "台",
+    "depId": 3,
+    "status": 1,
+    "remark": "客户信息备注客户信息备注客户信息备注"
+}
+
+### 修改
+
+PUT http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "code": "SBBM2018-01-001",
+    "machineCode": "JQM1000-02",
+    "name": "袖口整理机",
+    "norms": "bhm25*25*200",
+    "unit": "台",
+    "depId": 3,
+    "status": 1,
+    "remark": "客户信息备注客户信息备注客户信息备注"
+}
+
+
+### 删除
+
+DELETE http://{{host}}/{{module}}/1 HTTP/1.1
+content-type: {{contentType}}

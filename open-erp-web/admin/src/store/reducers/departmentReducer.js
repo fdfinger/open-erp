@@ -4,7 +4,8 @@ import {
   DEPARTMENT_ON_LOAD_DATA,
   DEPARTMENT_UPDATE_FORM,
   DEPARTMENT_EDIT_ON_FINISH,
-  DEPARTMENT_EDIT_ADD_CHILD
+  DEPARTMENT_EDIT_ADD_CHILD,
+  DEPARTMENTE_UPDATE_SELECT_DATA
 } from "../constant/department";
 
 const initForm = {
@@ -13,7 +14,7 @@ const initForm = {
   level: "",
   seq: "",
   remark: "",
-  operator: "",
+  operator: ""
 };
 
 const initState = {
@@ -40,6 +41,8 @@ export const departmentReducer = (state = initState, action) => {
     case DEPARTMENT_EDIT_ADD_CHILD:
       const level = parseInt(state.formData.level || 0) + 1
       return { ...state, formData: { ...initForm, level: level.toString(), parentId: state.formData.id || 1 } }
+    case DEPARTMENTE_UPDATE_SELECT_DATA:
+      return { ...state, selectData: action.value };
     default:
       return state;
   }

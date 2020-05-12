@@ -6,6 +6,8 @@ import {
   DEPARTMENT_ON_LOAD_DATA,
   DEPARTMENT_UPDATE_FORM,
   DEPARTMENT_EDIT_ON_FINISH,
+  DEPARTMENT_GET_SELECT_DATA,
+  DEPARTMENTE_UPDATE_SELECT_DATA
 } from "../constant/department";
 import { getList, getDataById, insert, update } from "../../api/department";
 import { message } from "antd";
@@ -70,5 +72,18 @@ export default function* departmentSaga() {
       res = yield call(insert, department.formData)
     }
     message.success(res.message || '操作成功')
+  })
+
+  // 获取 选择框 的 数据
+  yield takeEvery(DEPARTMENT_GET_SELECT_DATA, function* (){
+    try {
+      const res = yield call(getList)
+      yield put({
+        type: DEPARTMENTE_UPDATE_SELECT_DATA,
+        value: res.data.rows || []
+      })
+    } catch (error) {
+      
+    }
   })
 }
