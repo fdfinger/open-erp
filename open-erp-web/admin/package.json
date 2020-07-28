@@ -24,6 +24,7 @@
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3"
   },
+  "homepage": ".",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
