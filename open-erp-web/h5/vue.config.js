@@ -1,0 +1,15 @@
+module.exports = {
+  devServer: {
+    port: 8089,
+    disableHostCheck: true,
+    proxy: {
+      '/test': {
+        target: 'http://118.190.237.48:3000',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/test': '/'
+        }
+      }
+    }
+  }
+}

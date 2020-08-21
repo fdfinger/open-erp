@@ -1,10 +1,9 @@
 import axios from "axios";
-import { message } from "antd";
 
 const isDev = process.env.NODE_ENV === "development";
 
 const instance = axios.create({
-  baseURL: isDev ? "http://localhost:3000" : "http://118.190.237.48:3000",
+  baseURL: isDev ? "/test" : "http://118.190.237.48:3000",
 });
 
 instance.interceptors.request.use(
@@ -12,7 +11,7 @@ instance.interceptors.request.use(
     return config;
   },
   (err) => {
-    message.error('网络连接异常，请稍后重试');
+    console.error(err);
     return {};
   }
 );
@@ -23,7 +22,7 @@ instance.interceptors.response.use(
     return data;
   },
   (err) => {
-    message.error('网络连接异常，请稍后重试');
+    console.error(err);
     return {};
   }
 );
