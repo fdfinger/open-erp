@@ -1,4 +1,7 @@
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/h5/'
+  : '/',
   devServer: {
     port: 8089,
     disableHostCheck: true,
