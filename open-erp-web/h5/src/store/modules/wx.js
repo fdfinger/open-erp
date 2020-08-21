@@ -20,7 +20,7 @@ const actions = {
     })
     wx.error(function(res){
       state.ready = false
-      console.log(res)
+      window.console.log(res)
     })
   }
 }

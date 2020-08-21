@@ -9,7 +9,7 @@ _jssdk.configure({
 router.get("/", function (req, res, next) {
   const url = req.query.url;
   if(url) {
-    _jssdk.getjssdk(url).then((data) => {
+    _jssdk.getjssdk(decodeURIComponent(url)).then((data) => {
       return res.json(data)
     })
     .catch(() => {
